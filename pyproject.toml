@@ -1,0 +1,18 @@
+[project]
+name = "buscoplotpy"
+version = "0.0.1"
+authors = [
+    { name="Lorenzo Arcioni", email="lorenzo.arcioni2000@gmail.com" },
+]
+description = "A Python library for BUSCO data visualization."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/lorenzo-arcioni/BUSCO-Plot-Py"
+Issues = "https://github.com/lorenzo-arcioni/BUSCO-Plot-Py/issues"

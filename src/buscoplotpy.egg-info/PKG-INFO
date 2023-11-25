@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: buscoplotpy
+Version: 0.0.1
+Summary: A Python library for BUSCO data visualization.
+Author-email: Lorenzo Arcioni <lorenzo.arcioni2000@gmail.com>
+Project-URL: Homepage, https://github.com/lorenzo-arcioni/BUSCO-Plot-Py
+Project-URL: Issues, https://github.com/lorenzo-arcioni/BUSCO-Plot-Py/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# buscoplotpy
+A Python library for BUSCO data visualization.
