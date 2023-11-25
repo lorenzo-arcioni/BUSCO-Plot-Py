@@ -2,21 +2,24 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import math as mt
-import load_busco_fulltable
+from load_busco_fulltable import load_busco_fulltable
 
 from matplotlib.patches import Wedge, Rectangle
 
-def karyoplot(karyotype_file: str, busco_fulltable: str, output_file: str, title: str, dpi: int = 300) -> None:
+def karyoplot(karyotype_file: str, full_table_file: str = '', output_file: str = 'karyoplot.png', title: str = 'Karyoplot', busco_fulltable: pd.DataFrame = None, dpi: int = 300, chr_limit: int = 30, plt_show: bool = False) -> None:
 
     """
     Plot a karyotype based on the karyotype file and the BUSCO fulltable.
 
     Parameters:
         karyotype_file (str): The path to the karyotype file.
-        busco_fulltable (str): The path to the BUSCO fulltable.
-        output_file (str): The path to save the output plot.
-        title (str): The title of the plot.
+        full_table_file (str, optional): The path to the BUSCO's full table.
+        output_file (str, optional): The path to save the output plot.
+        title (str, optional): The title of the plot.
+        busco_fulltable (str, optional): The BUSCO's full table DataFrame.
         dpi (int, optional): The DPI (dots per inch) of the output plot. Default is 300.
+        chr_limit (int, optional): The maximum number of chromosomes to plot. Default is 30.
+        plt_show (bool, optional): Whether to show the plot. Default is False.
 
     Output:
         - The karyotype plot in png format.
@@ -48,13 +51,30 @@ def karyoplot(karyotype_file: str, busco_fulltable: str, output_file: str, title
     karyotype = pd.read_csv(karyotype_file, sep="\t")
 
     # Load the BUSCO fulltable
-    fulltable = load_busco_fulltable(busco_fulltable=busco_fulltable)
+    if busco_fulltable is not None:
+        fulltable = busco_fulltable
+    elif full_table_file == '':
+        raise ValueError('Please provide BUSCO full table DataFrame or a path to the BUSCO full table.')
+    else:
+        fulltable = load_busco_fulltable(path=full_table_file)
 
     # Remove rows where status is 'Missing'
     fulltable = fulltable[fulltable['status'] != 'Missing']
 
     # Extract the sequence name from the 'sequence' column
-    fulltable['sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
+    fulltable.loc[:, 'sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
+
+    karyotype.set_index('chr', inplace=True)
+    fulltable.set_index('sequence', inplace=True)
+    # Select the most hitting BUSCOs chromosome based on the 'hit_count' column in the fulltable DataFrame
+    fulltable[['sequence', 'busco_id']].groupby('sequence').count().sort_values(ascending=False)
+
+    # If the number of chromosomes is greater than chr_limit,
+    #   then sort the karyotype DataFrame by the most hitting BUSCOs chromosome
+    if len(karyotype) > chr_limit:
+        karyotype = karyotype.sort_values(by='hit_count', ascending=False)
+    
+    # karyotype = karyotype.iloc[:chr_limit, :]
 
     # Approximate the length of the karyotype plot
     approx_height = ((len(karyotype) * 1.7 / 100) + 1.8) * mt.sqrt(len(karyotype))
@@ -147,5 +167,7 @@ def karyoplot(karyotype_file: str, busco_fulltable: str, output_file: str, title
     )
 
     # Save and show the plot
-    plt.savefig(output_file, dpi=300)
-    plt.show()
+    plt.savefig(output_file, dpi=dpi)
+
+    if plt_show:
+        plt.show()
