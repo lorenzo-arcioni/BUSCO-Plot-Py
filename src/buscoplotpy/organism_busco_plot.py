@@ -6,34 +6,52 @@ import pandas as pd
 
 from matplotlib.patches import Patch
 
-def organism_busco_barplot(df: pd.DataFrame, 
+def organism_busco_barplot(df: pd.DataFrame,
+                           group_name: str = '',
+                           organism_name: str = '',
                            out_path: str = './', 
-                           filename: str = 'busco_barplot'
+                           filename: str = 'busco_barplot',
+                           dpi: int = 300,
+                           plt_show: bool = False
                         ) -> None:
     
     """
     Generate a barplot to visualize the completeness of assembly for different organisms on the same BUSCO dataset.
 
     Parameters:
-    - df (pd.DataFrame): The input dataframe containing the data to be plotted.
-    - out_path (str): The path where the plot image will be saved.
-    - filename (str): The name of the plot image file.
+        - df (pd.DataFrame): The input dataframe containing the data to be plotted.
+        - group_name (str): The name of the group to be plotted.
+        - organism_name (str): The name of the organism to be plotted.
+        - out_path (str): The path where the plot image will be saved.
+        - filename (str): The name of the plot image file.
 
     Output:
-    - A barplot image with the completeness of assembly for different organisms on the same BUSCO dataset in .png format.
+        - A barplot image with the completeness of assembly for different organisms on the same BUSCO dataset in .png format.
 
     Returns:
-    None
+        - None
     """
-    
-    # Get the group and dataset name from the dataframe
-    group        = df['group'].iloc[0]
-    dataset_name = df['dataset_name'].iloc[0]
+
+    if group_name == '':
+        group_name = df['group'].iloc[0]
+
 
     # Create a list of species names
     species_names = []
-    for organism in df['organism'].unique():
-        species_names = species_names + [organism + '_' + i for i in df[df['organism'] == organism]['version']]
+
+    # If the organism name is not provided, get the unique species names from the dataframe    
+    if organism_name == '':
+        organisms = df['organism'].unique()
+
+        for organism in list(organisms):
+            species_names = species_names + [organism + '_' + i for i in df[df['organism'] == organism]['version']]
+    
+    # Else if the organism name is provided, set the list of species names to the provided name
+    else:
+        species_names = [organism_name]
+    
+    # Get the group and dataset name from the dataframe
+    dataset_name = df['dataset_name'].iloc[0]
 
     # Create a matrix of completeness values
     matrix = df[['single copy', 'multi copy', 'fragmented', 'missing']].to_numpy()
@@ -78,7 +96,7 @@ def organism_busco_barplot(df: pd.DataFrame,
     # Customize the x and y axes and tick labels
     axs.set_xlabel('Percentage', fontsize=18)
     axs.set_ylabel('Organism', fontsize=18)
-    axs.set_title(dataset_name + ' ' + group + ' - Barplot of completeness of assembly', fontsize=20, weight='bold', pad=30)
+    axs.set_title(dataset_name + ' ' + group_name + ' - Barplot of completeness of assembly', fontsize=20, weight='bold', pad=30)
     axs.tick_params(labelsize=15)
 
     # Set the x-axis limits
@@ -110,5 +128,7 @@ def organism_busco_barplot(df: pd.DataFrame,
     #axs[1].axis('off')
 
     # Save and show the plot
-    plt.savefig(out_path + filename + '_completeness.png', bbox_inches='tight', dpi=300)
-    plt.show()
+    plt.savefig(out_path + filename + '_completeness.png', bbox_inches='tight', dpi=dpi)
+
+    if plt_show:
+        plt.show()
