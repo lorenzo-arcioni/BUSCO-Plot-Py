@@ -13,7 +13,8 @@ def karyoplot(karyotype_file: str,
               busco_fulltable: pd.DataFrame = None, 
               dpi: int = 300, 
               chrs_limit: int = 30, 
-              plt_show: bool = False) -> None:
+              plt_show: bool = False
+            ) -> None:
 
     """
     Plot a karyotype based on the karyotype file and the BUSCO fulltable.

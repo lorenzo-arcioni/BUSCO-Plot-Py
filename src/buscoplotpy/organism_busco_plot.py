@@ -6,7 +6,10 @@ import pandas as pd
 
 from matplotlib.patches import Patch
 
-def organism_busco_barplot(df: pd.DataFrame, out_path: str, filename: str) -> None:
+def organism_busco_barplot(df: pd.DataFrame, 
+                           out_path: str = './', 
+                           filename: str = 'busco_barplot'
+                        ) -> None:
     
     """
     Generate a barplot to visualize the completeness of assembly for different organisms on the same BUSCO dataset.
