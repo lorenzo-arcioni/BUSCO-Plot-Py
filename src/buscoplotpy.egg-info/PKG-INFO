@@ -11,6 +11,9 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: pandas
 
 # buscoplotpy
 A Python library for BUSCO data visualization.

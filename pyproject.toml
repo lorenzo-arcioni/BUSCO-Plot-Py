@@ -13,6 +13,12 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+dependencies = [
+    "matplotlib",
+    "seaborn",
+    "pandas",
+]
+
 [project.urls]
 Homepage = "https://github.com/lorenzo-arcioni/BUSCO-Plot-Py"
 Issues = "https://github.com/lorenzo-arcioni/BUSCO-Plot-Py/issues"

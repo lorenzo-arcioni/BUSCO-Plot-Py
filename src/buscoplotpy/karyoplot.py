@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import math as mt
-from load_busco_fulltable import load_busco_fulltable
+from buscoplotpy.load_busco_fulltable import load_busco_fulltable
 
 from matplotlib.patches import Wedge, Rectangle
 
@@ -13,7 +13,8 @@ def karyoplot(karyotype_file: str,
               busco_fulltable: pd.DataFrame = None, 
               dpi: int = 300, 
               chrs_limit: int = 30, 
-              plt_show: bool = False
+              plt_show: bool = False,
+              palette: str in ['green', 'azure'] = 'green',
             ) -> None:
 
     """
@@ -38,7 +39,18 @@ def karyoplot(karyotype_file: str,
     # Define the dimensions of the karyotype plot
     DIM = 6
 
-    def get_color(status: str) -> str:
+    # Define the colors
+    green = ['green', 'gray', 'black']
+    azure = ['#5999ff', '#ffff05', '#21211d']
+    selected = []
+    
+    # Selecting the right palette
+    if palette == 'green':
+        selected = green
+    elif palette == 'azure':
+        selected = azure
+
+    def get_color(status: str, palette: str = 'green') -> str:
 
         """
         Get the color based on the status of the item.
@@ -47,13 +59,14 @@ def karyoplot(karyotype_file: str,
         Returns:
             str: The color corresponding to the status.
         """
-
+        
+        # Reurn the color based on the palette/status
         if status == 'Complete':
-            return 'green' # Return green for complete status
+            return selected[0]
         elif status == 'Partial':
-            return 'gray'  # Return gray for partial status
+            return selected[1]
         else:
-            return 'black' # Return black for other status
+            return selected[2]
 
     # Read the karyotype file into a DataFrame
     karyotype = pd.read_csv(karyotype_file, sep="\t")
@@ -79,9 +92,9 @@ def karyoplot(karyotype_file: str,
         karyotype.set_index('chr', inplace=True)
 
         # Select the most significant chromosomes (the chromosomes with more hits)
-        first_chrs = fulltable['sequence'].value_counts().sort_values(ascending=False).index.to_list()[:chrs_limit]
-        karyotype = karyotype.loc[first_chrs]
-        karyotype.reset_index()
+        first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
+        karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
+        karyotype = karyotype.reset_index()
 
     ###########################################################################################################
     # Approximate the length of the karyotype plot
@@ -143,7 +156,7 @@ def karyoplot(karyotype_file: str,
             #:               (xy)---- width -----+
 
             # Create the rectangle based on converted coordinates
-            re = Rectangle(xy=anchor_point, width=width, height=height, color=get_color(item['status']), linewidth=1)
+            re = Rectangle(xy=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
             ax.add_patch(re)
         
         # Calculate the center and radius of the chromosome semicircles
@@ -167,9 +180,9 @@ def karyoplot(karyotype_file: str,
         ax.plot([x_start, x_end], [y_end, y_end],     ls='-', color='black', linewidth=1)
 
     # Write the legend
-    plt.legend(handles=[Rectangle((0,0),1,1, color='green'), 
-                        Rectangle((0,0),1,1, color='gray'), 
-                        Rectangle((0,0),1,1, color='black')],
+    plt.legend(handles=[Rectangle((0,0),1,1, color=selected[0]), 
+                        Rectangle((0,0),1,1, color=selected[1]), 
+                        Rectangle((0,0),1,1, color=selected[2])],
                         labels=['Complete', 'Fragmented', 'Missing'], 
                         loc='upper right'
     )
@@ -179,3 +192,5 @@ def karyoplot(karyotype_file: str,
 
     if plt_show:
         plt.show()
+    
+    plt.close()

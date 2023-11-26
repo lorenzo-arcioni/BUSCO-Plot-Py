@@ -8,4 +8,5 @@ src/buscoplotpy/organism_busco_plot.py
 src/buscoplotpy.egg-info/PKG-INFO
 src/buscoplotpy.egg-info/SOURCES.txt
 src/buscoplotpy.egg-info/dependency_links.txt
+src/buscoplotpy.egg-info/requires.txt
 src/buscoplotpy.egg-info/top_level.txt
