@@ -15,6 +15,7 @@ def karyoplot(karyotype_file: str,
               chrs_limit: int = 30, 
               plt_show: bool = False,
               palette: str in ['green', 'azure'] = 'green',
+              bbox_inches: str = 'tight',
             ) -> None:
 
     """
@@ -37,7 +38,7 @@ def karyoplot(karyotype_file: str,
     """
 
     # Define the dimensions of the karyotype plot
-    DIM = 6
+    DIM = 8
 
     # Define the colors
     green = ['green', 'gray', 'black']
@@ -63,13 +64,16 @@ def karyoplot(karyotype_file: str,
         # Reurn the color based on the palette/status
         if status == 'Complete':
             return selected[0]
-        elif status == 'Partial':
+        elif status == 'Duplicated':
             return selected[1]
         else:
             return selected[2]
 
     # Read the karyotype file into a DataFrame
     karyotype = pd.read_csv(karyotype_file, sep="\t")
+
+    # Lowercase the column names
+    karyotype.columns = karyotype.columns.str.lower()
 
     # Load the BUSCO fulltable
     if busco_fulltable is not None:
@@ -88,13 +92,18 @@ def karyoplot(karyotype_file: str,
 
     # If the number of chromosomes is greater than chr_limit,
     #   then sort the karyotype DataFrame by the most hitting BUSCOs chromosome
-    if len(karyotype) > chrs_limit:
-        karyotype.set_index('chr', inplace=True)
 
-        # Select the most significant chromosomes (the chromosomes with more hits)
-        first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
-        karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
-        karyotype = karyotype.reset_index()
+    if len(karyotype) > chrs_limit:
+
+        if len(fulltable) == 0:
+            karyotype = karyotype.iloc[:chrs_limit, :]
+        else:
+            karyotype.set_index('chr', inplace=True)
+
+            # Select the most significant chromosomes (the chromosomes with more hits)
+            first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
+            karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
+            karyotype = karyotype.reset_index()
 
     ###########################################################################################################
     # Approximate the length of the karyotype plot
@@ -130,13 +139,13 @@ def karyoplot(karyotype_file: str,
         chr_dim = row['end']
 
         # Define the coordinates for the rectangle
-        x_start = chr_max_len * DIM * 0.13
+        x_start = chr_max_len
         x_end   = x_start + chr_dim * (X_lim*7.5/10) / chr_max_dim
         y_start = (len(karyotype) - index) * DIM
         y_end   = y_start + (DIM * 0.45)
 
         # Add the chromosome name to the plot
-        ax.text(0.5, y_start, row['chr'])
+        ax.text(0.0, y_start, row['chr'])
 
         #plot the karyotypes
         for i, item in fulltable[fulltable['sequence'] == row.chr].iterrows():
@@ -160,24 +169,28 @@ def karyoplot(karyotype_file: str,
             ax.add_patch(re)
         
         # Calculate the center and radius of the chromosome semicircles
-        center_y = (y_end + y_start)/2.0
-        radius   = (y_end - y_start)/2.0
+        #center_y = (y_end + y_start)/2.0
+        #radius   = (y_end - y_start)/2.0
 
         # Calculate the angles of the semicircles
-        theta1   = -90.0
-        theta2   =  90.0
+        #theta1   = -90.0
+        #theta2   =  90.0
 
         # Create the start and the end semicircles
-        w1 = Wedge((x_start, center_y), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
-        w2 = Wedge((x_end, center_y),   radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
+        #w1 = Wedge((x_start, center_y), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
+        #w2 = Wedge((x_end,   center_y), radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
 
         # Add the semicircles on chromosomes
-        ax.add_patch(w1)
-        ax.add_patch(w2)
+        #ax.add_patch(w1)
+        #ax.add_patch(w2)
 
-        # Add the chromosome lines
+        # Add the chromosome horizontal lines
         ax.plot([x_start, x_end], [y_start, y_start], ls='-', color='black', linewidth=1)
         ax.plot([x_start, x_end], [y_end, y_end],     ls='-', color='black', linewidth=1)
+        
+        # Add the chromosome vertical lines
+        ax.plot([x_start, x_start], [y_start, y_end], ls='-', color='black', linewidth=1)
+        ax.plot([x_end, x_end], [y_start, y_end],     ls='-', color='black', linewidth=1)
 
     # Write the legend
     plt.legend(handles=[Rectangle((0,0),1,1, color=selected[0]), 
@@ -188,7 +201,7 @@ def karyoplot(karyotype_file: str,
     )
 
     # Save and show the plot
-    plt.savefig(output_file, dpi=dpi)
+    plt.savefig(output_file, dpi=dpi, bbox_inches=bbox_inches)
 
     if plt_show:
         plt.show()

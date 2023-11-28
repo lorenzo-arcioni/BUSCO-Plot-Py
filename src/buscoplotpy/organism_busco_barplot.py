@@ -32,6 +32,9 @@ def organism_busco_barplot(df: pd.DataFrame,
         - None
     """
 
+    if len(df) == 0:
+        return None
+
     if group_name == '':
         group_name = df['group'].iloc[0]
 
@@ -132,3 +135,5 @@ def organism_busco_barplot(df: pd.DataFrame,
 
     if plt_show:
         plt.show()
+    
+    plt.close()
