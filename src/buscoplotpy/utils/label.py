@@ -15,4 +15,4 @@ class Label():
     
     def plot(self, ax):
 
-        ax.text(self.x, self.y, self.text, horizontalalignment=self.horizontalalignment, erticalalignment=self.verticalalignment)
+        ax.text(self.x, self.y, self.text, horizontalalignment=self.horizontalalignment, verticalalignment=self.verticalalignment)

@@ -114,19 +114,8 @@ class Chromosome():
 		label = Label(x, y, text, horizontalalignment=horizontalalignment, verticalalignment=verticalalignment)
 
 		self.labels.append(label)
-
-	def add_label(self, label: Label):
-
-		self.labels.append(label)
 	
 	def add_region(self, anchor_point: (float, float), width: float, height: float, color: str = 'black', linewidth: int = 1):
 
 		region = Rectangle(xy=anchor_point, width=width, height=height, color=color, linewidth=linewidth)
 		self.regions.append(region)
-	
-	def add_region(self, region: Rectangle):
-
-		self.regions.append(region)
-
-
-

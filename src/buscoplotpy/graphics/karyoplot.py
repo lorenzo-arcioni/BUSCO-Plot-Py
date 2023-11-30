@@ -78,10 +78,8 @@ def karyoplot(karyotype_file: str,
     # Extract the sequence name from the 'sequence' column
     fulltable.loc[:, 'sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
 
-    ##########################################################################################################
-
     # If the number of chromosomes is greater than chr_limit,
-    #   then sort the karyotype DataFrame by the most hitting BUSCOs chromosome
+    #   then only the firsts chrs_limit chromosomes will be plotted
 
     if len(karyotype) > chrs_limit:
 
@@ -94,10 +92,6 @@ def karyoplot(karyotype_file: str,
             first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
             karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
             karyotype = karyotype.reset_index()
-
-    ###########################################################################################################
-    # Approximate the length of the karyotype plot
-    #approx_height = ((len(karyotype) * 1.7 / 100) + 1.8) * mt.sqrt(len(karyotype))
 
     # Calculate the limits of the plot
     X_lim = 100
@@ -130,7 +124,7 @@ def karyoplot(karyotype_file: str,
 
         # Define the coordinates for the rectangle
         x_start = chr_max_len / 2
-        x_end   = x_start + chr_dim * (X_lim*7.5/10) / chr_max_dim
+        x_end   = x_start + chr_dim * (X_lim*9/10) / chr_max_dim
         y_start = (len(karyotype) - index) * dim
         y_end   = y_start + dim / 2
 
@@ -156,10 +150,10 @@ def karyoplot(karyotype_file: str,
             #:               (xy)---- width -----+
 
             # Add the seleted region to the chromosome
-            C.add_region(xy=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
+            C.add_region(anchor_point=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
         
         # Plot the chromosome
-        C.plot()
+        C.plot(ax)
 
     # Write the legend
     plt.legend(handles=[Rectangle((0,0),1,1, color=selected[0]), 
