@@ -17,7 +17,7 @@ def karyoplot(karyotype_file: str,
               palette: str in ['green', 'azure'] = 'green',
               bbox_inches: str = 'tight',
               dim: int = 2
-            ) -> None:
+) -> None:
 
     """
     Plot a karyotype based on the karyotype file and the BUSCO fulltable.
