@@ -2,20 +2,21 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import math as mt
-from buscoplotpy.load_busco_fulltable import load_busco_fulltable
+from buscoplotpy.utils.load_busco_fulltable import load_busco_fulltable
+from buscoplotpy.graphics.chromosome import Chromosome
 
 from matplotlib.patches import Wedge, Rectangle
 
 def karyoplot(karyotype_file: str, 
-              full_table_file: str = '', 
-              output_file: str = 'karyoplot.png', 
+              output_file: str = '', 
               title: str = 'Karyoplot', 
-              busco_fulltable: pd.DataFrame = None, 
+              fulltable: pd.DataFrame = None, 
               dpi: int = 300, 
               chrs_limit: int = 30, 
               plt_show: bool = False,
               palette: str in ['green', 'azure'] = 'green',
               bbox_inches: str = 'tight',
+              dim: int = 2
             ) -> None:
 
     """
@@ -23,10 +24,9 @@ def karyoplot(karyotype_file: str,
 
     Parameters:
         karyotype_file (str): The path to the karyotype file.
-        full_table_file (str, optional): The path to the BUSCO's full table.
         output_file (str, optional): The path to save the output plot.
         title (str, optional): The title of the plot.
-        busco_fulltable (str, optional): The BUSCO's full table DataFrame.
+        fulltable (pd.DataFrame): The BUSCO's full table DataFrame.
         dpi (int, optional): The DPI (dots per inch) of the output plot. Default is 300.
         chrs_limit (int, optional): The maximum number of chromosomes to plot. Default is 30.
         plt_show (bool, optional): Whether to show the plot. Default is False.
@@ -36,9 +36,6 @@ def karyoplot(karyotype_file: str,
     Returns:
         None
     """
-
-    # Define the dimensions of the karyotype plot
-    DIM = 8
 
     # Define the colors
     green = ['green', 'gray', 'black']
@@ -75,19 +72,12 @@ def karyoplot(karyotype_file: str,
     # Lowercase the column names
     karyotype.columns = karyotype.columns.str.lower()
 
-    # Load the BUSCO fulltable
-    if busco_fulltable is not None:
-        fulltable = busco_fulltable
-    elif full_table_file == '':
-        raise ValueError('Please provide BUSCO full table DataFrame or a path to the BUSCO full table.')
-    else:
-        fulltable = load_busco_fulltable(path=full_table_file)
-
     # Remove rows where status is 'Missing'
     fulltable = fulltable[fulltable['status'] != 'Missing']
 
     # Extract the sequence name from the 'sequence' column
     fulltable.loc[:, 'sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
+
     ##########################################################################################################
 
     # If the number of chromosomes is greater than chr_limit,
@@ -107,29 +97,29 @@ def karyoplot(karyotype_file: str,
 
     ###########################################################################################################
     # Approximate the length of the karyotype plot
-    approx_height = ((len(karyotype) * 1.7 / 100) + 1.8) * mt.sqrt(len(karyotype))
+    #approx_height = ((len(karyotype) * 1.7 / 100) + 1.8) * mt.sqrt(len(karyotype))
+
+    # Calculate the limits of the plot
+    X_lim = 100
+    Y_lim = dim * len(karyotype) + dim + 5
 
     # Create a new figure and axis
-    fig, ax   = plt.subplots(figsize=(20, approx_height))
+    fig, ax   = plt.subplots(figsize=(20, 20*Y_lim/X_lim), dpi=dpi)
 
     # Turn off the axis
     ax.axis('off')
-
-    # Calculate the limits of the plot
-    X_lim = DIM * len(max(karyotype['chr'], key=len))
-    Y_lim = DIM * len(karyotype) + 20
 
     # Set the x and y limits of the plot
     ax.set_xlim([0, X_lim])
     ax.set_ylim([0, Y_lim])
 
     # Insert the plot title
-    ax.text(X_lim / 2, Y_lim - 4, title, fontsize=20, ha='center')
+    ax.text(X_lim / 2, Y_lim - 1, title, fontsize=20, ha='center')
 
     # Calculate the maximum length of the chromosome name
     chr_max_len = len(max(karyotype['chr'], key=len))
 
-    # Get the maximum length of the karyotype
+    # Get the maximum length of the chromosome
     chr_max_dim = karyotype['end'].max()
 
     # Plot the karyotypes
@@ -139,18 +129,19 @@ def karyoplot(karyotype_file: str,
         chr_dim = row['end']
 
         # Define the coordinates for the rectangle
-        x_start = chr_max_len
+        x_start = chr_max_len / 2
         x_end   = x_start + chr_dim * (X_lim*7.5/10) / chr_max_dim
-        y_start = (len(karyotype) - index) * DIM
-        y_end   = y_start + (DIM * 0.45)
+        y_start = (len(karyotype) - index) * dim
+        y_end   = y_start + dim / 2
 
-        # Add the chromosome name to the plot
-        ax.text(0.0, y_start, row['chr'])
+        C = Chromosome(x_start, x_end, y_start, y_end)
+        C.add_label(x=0.0, y=(y_start + y_end) / 2, text=row['chr'], horizontalalignment='center', verticalalignment='center')
+        
 
-        #plot the karyotypes
+        # Create all chromosome region
         for i, item in fulltable[fulltable['sequence'] == row.chr].iterrows():
 
-            # Define the coordinates for the rectangle
+            # Define the coordinates for the region
             converted_start_pos = item['gene_start'] * (x_end - x_start) / chr_dim
             converted_end_pos   = item['gene_end']   * (x_end - x_start) / chr_dim
 
@@ -164,44 +155,23 @@ def karyoplot(karyotype_file: str,
             #:                |                  |
             #:               (xy)---- width -----+
 
-            # Create the rectangle based on converted coordinates
-            re = Rectangle(xy=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
-            ax.add_patch(re)
+            # Add the seleted region to the chromosome
+            C.add_region(xy=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
         
-        # Calculate the center and radius of the chromosome semicircles
-        #center_y = (y_end + y_start)/2.0
-        #radius   = (y_end - y_start)/2.0
-
-        # Calculate the angles of the semicircles
-        #theta1   = -90.0
-        #theta2   =  90.0
-
-        # Create the start and the end semicircles
-        #w1 = Wedge((x_start, center_y), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
-        #w2 = Wedge((x_end,   center_y), radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
-
-        # Add the semicircles on chromosomes
-        #ax.add_patch(w1)
-        #ax.add_patch(w2)
-
-        # Add the chromosome horizontal lines
-        ax.plot([x_start, x_end], [y_start, y_start], ls='-', color='black', linewidth=1)
-        ax.plot([x_start, x_end], [y_end, y_end],     ls='-', color='black', linewidth=1)
-        
-        # Add the chromosome vertical lines
-        ax.plot([x_start, x_start], [y_start, y_end], ls='-', color='black', linewidth=1)
-        ax.plot([x_end, x_end], [y_start, y_end],     ls='-', color='black', linewidth=1)
+        # Plot the chromosome
+        C.plot()
 
     # Write the legend
     plt.legend(handles=[Rectangle((0,0),1,1, color=selected[0]), 
                         Rectangle((0,0),1,1, color=selected[1]), 
                         Rectangle((0,0),1,1, color=selected[2])],
-                        labels=['Complete', 'Fragmented', 'Missing'], 
+                        labels=['Complete', 'Duplicated', 'Fragmented'], 
                         loc='upper right'
     )
 
     # Save and show the plot
-    plt.savefig(output_file, dpi=dpi, bbox_inches=bbox_inches)
+    if output_file:
+        plt.savefig(output_file, dpi=dpi, bbox_inches=bbox_inches)
 
     if plt_show:
         plt.show()
