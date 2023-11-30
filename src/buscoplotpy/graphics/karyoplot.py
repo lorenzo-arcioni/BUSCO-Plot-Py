@@ -3,8 +3,6 @@
 #Importing libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-import math as mt
-from buscoplotpy.utils.load_busco_fulltable import load_busco_fulltable
 from buscoplotpy.graphics.chromosome import Chromosome
 
 from matplotlib.patches import Wedge, Rectangle

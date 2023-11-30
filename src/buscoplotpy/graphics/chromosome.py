@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from matplotlib.patches import Wedge, Rectangle
-from buscoplotpy.utils.label import Label
+from buscoplotpy.graphics.label import Label
 
 
 class Chromosome():
