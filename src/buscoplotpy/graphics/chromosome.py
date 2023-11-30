@@ -11,7 +11,8 @@ class Chromosome():
 					   y_start: float, 
 					   y_end: float, 
 					   horizontal: bool = True,
-					   round_edges: bool = False):
+					   round_edges: bool = False
+	):
 		
 		"""
 		Initialize the Chromosome class.
@@ -25,14 +26,17 @@ class Chromosome():
 			round_edges (bool, optional): Whether the chromosome has rounded edges. Defaults to False.
 		"""
 
+		# Coordinates
 		self.x_start    = x_start
 		self.x_end      = x_end
 		self.y_start    = y_start
 		self.y_end      = y_end
-
-		self.horizontal = horizontal
+		
+		# Graphical attributes
+		self.horizontal  = horizontal
 		self.round_edges = round_edges
 
+		# Elements
 		self.labels  = []
 		self.regions = []
 		
@@ -103,19 +107,41 @@ class Chromosome():
 			ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
 			ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
 		
+		# Plot the labels
 		for label in self.labels:
 			label.plot(ax)
 		
+		# Plot the regions
 		for region in self.regions:
 			ax.add_patch(region)
 	
-	def add_label(self, x: float, y: float, text: str, horizontalalignment: str, verticalalignment: str):
+	def add_label(self, x: float, y: float, text: str, ha: str = 'left', va: str = 'baseline'):
 
-		label = Label(x, y, text, horizontalalignment=horizontalalignment, verticalalignment=verticalalignment)
+		"""
+		Add a label to the plot at the specified coordinates.
+		Args:
+			x (float): The x-coordinate of the label.
+			y (float): The y-coordinate of the label.
+			text (str): The text of the label.
+			ha (str, optional): The horizontal alignment of the label. Defaults to 'left'.
+			va (str, optional): The vertical alignment of the label. Defaults to 'baseline'.
+		"""
 
+		label = Label(x, y, text, ha=ha, va=va)
 		self.labels.append(label)
 	
 	def add_region(self, anchor_point: (float, float), width: float, height: float, color: str = 'black', linewidth: int = 1):
+
+		"""
+		Adds a region to the list of regions.
+		
+		Parameters:
+			anchor_point (Tuple[float, float]): The anchor point of the region.
+			width (float): The width of the region.
+			height (float): The height of the region.
+			color (str, optional): The color of the region. Defaults to 'black'.
+			linewidth (int, optional): The linewidth of the region. Defaults to 1.
+		"""
 
 		region = Rectangle(xy=anchor_point, width=width, height=height, color=color, linewidth=linewidth)
 		self.regions.append(region)
