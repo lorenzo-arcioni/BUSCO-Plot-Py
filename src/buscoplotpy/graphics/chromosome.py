@@ -7,11 +7,11 @@ from buscoplotpy.graphics.label import Label
 class Chromosome():
 
 	def __init__(self, x_start: float, 
-					x_end: float, 
-					y_start: float, 
-					y_end: float, 
-					horizontal: bool = True,
-					round_edges: bool = False
+                       x_end: float, 
+                       y_start: float, 
+                       y_end: float, 
+                       horizontal: bool = True,
+                       round_edges: bool = False
 	):
 		
 		"""
@@ -27,10 +27,10 @@ class Chromosome():
 		"""
 
 		# Coordinates
-		self.x_start    = x_start
-		self.x_end      = x_end
-		self.y_start    = y_start
-		self.y_end      = y_end
+		self.x_start = x_start
+		self.x_end   = x_end
+		self.y_start = y_start
+		self.y_end   = y_end
 		
 		# Graphical attributes
 		self.horizontal  = horizontal
