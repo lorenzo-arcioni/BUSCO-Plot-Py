@@ -8,10 +8,10 @@ class Chromosome():
 
 	def __init__(self, x_start: float, 
 					x_end: float, 
-					   y_start: float, 
-					   y_end: float, 
-					   horizontal: bool = True,
-					   round_edges: bool = False
+					y_start: float, 
+					y_end: float, 
+					horizontal: bool = True,
+					round_edges: bool = False
 	):
 		
 		"""
