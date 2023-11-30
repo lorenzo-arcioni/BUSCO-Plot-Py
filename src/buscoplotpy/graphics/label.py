@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# This class represents a label on a plot.
 
 class Label():
 
