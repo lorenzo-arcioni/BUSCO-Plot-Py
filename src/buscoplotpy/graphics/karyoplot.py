@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #Importing libraries
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -79,7 +81,7 @@ def karyoplot(karyotype_file: str,
     fulltable.loc[:, 'sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
 
     # If the number of chromosomes is greater than chr_limit,
-    #   then only the firsts chrs_limit chromosomes will be plotted
+    #   then select the most significant chromosomes
 
     if len(karyotype) > chrs_limit:
 
