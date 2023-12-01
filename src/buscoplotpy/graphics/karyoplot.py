@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from buscoplotpy.graphics.chromosome import Chromosome
 
-from matplotlib.patches import Wedge, Rectangle
+from matplotlib.patches import Rectangle
 
 def karyoplot(karyotype_file: str, 
               output_file: str = '', 
@@ -83,15 +83,15 @@ def karyoplot(karyotype_file: str,
 
     if len(karyotype) > chrs_limit:
 
-        if len(fulltable) == 0:
+        #if len(fulltable) == 0:
             karyotype = karyotype.iloc[:chrs_limit, :]
-        else:
-            karyotype.set_index('chr', inplace=True)
+        #else:
+        #    karyotype.set_index('chr', inplace=True)
 
             # Select the most significant chromosomes (the chromosomes with more hits)
-            first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
-            karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
-            karyotype = karyotype.reset_index()
+        #    first_chrs = fulltable['sequence'].value_counts().index.to_list()[:chrs_limit]
+        #    karyotype = karyotype.loc[first_chrs].sort_values(by='end', ascending=False)
+        #    karyotype = karyotype.reset_index()
 
     # Calculate the limits of the plot
     X_lim = 100
@@ -129,7 +129,7 @@ def karyoplot(karyotype_file: str,
         y_end   = y_start + dim / 2
 
         C = Chromosome(x_start, x_end, y_start, y_end)
-        C.add_label(x=0.0, y=(y_start + y_end) / 2, text=row['chr'], horizontalalignment='center', verticalalignment='center')
+        C.add_label(x=0.0, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
         
 
         # Create all chromosome region
