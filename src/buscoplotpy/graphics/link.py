@@ -4,7 +4,7 @@ import numpy as np
 
 class Link:
 
-    def __init__(self, C1: Chromosome, C2: Chromosome, p_1: int, p_2: int, color: str = 'black'):
+    def __init__(self, C1: Chromosome, C2: Chromosome, p_1: int, p_2: int, color: str = 'black', straight_line: bool = False):
 
         """
         Initialize the object with the given values.
@@ -14,7 +14,7 @@ class Link:
 
         self.C1 = C1
         self.C2 = C2
-
+        self.straight_line = straight_line
         self.color = color
 
         self.start_point = self.C1.get_vertical_relative_position(p_1)
@@ -33,12 +33,17 @@ class Link:
         Args:
             ax (matplotlib.axes.Axes): The axes on which to plot the link.
         """
+        
+        if not self.straight_line:
+            # Parametro t da 0 a 1
+            t_values = np.linspace(0, 1, 100)
 
-        # Parametro t da 0 a 1
-        t_values = np.linspace(0, 1, 100)
-
-        # Calcola le coordinate x e y sulla curva di Bezier per ogni t
-        x_values = [self.bezier_curve(t, self.start_point[0], 90,  90, self.end_point[0]) for t in t_values]
-        y_values = [self.bezier_curve(t, self.start_point[1], self.C1.y_start, self.C2.y_end, self.end_point[1]) for t in t_values]
+            # Calcola le coordinate x e y sulla curva di Bezier per ogni t
+            x_values = [self.bezier_curve(t, self.start_point[0], 90,  90, self.end_point[0]) for t in t_values]
+            y_values = [self.bezier_curve(t, self.start_point[1], self.C1.y_start, self.C2.y_end, self.end_point[1]) for t in t_values]
+            
+        else:
+            x_values = [self.start_point[0], self.end_point[0]]
+            y_values = [self.start_point[1], self.end_point[1]]
 
         ax.plot(x_values, y_values, ls='-', color=self.color, linewidth=1)

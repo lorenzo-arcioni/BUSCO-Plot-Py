@@ -13,7 +13,8 @@ class Chromosome():
                        y_end: float,
                        size: float,
                        horizontal: bool = True,
-                       round_edges: bool = False
+                       round_edges: bool = False,
+                       color: str = 'gray'
     ):
 		
         """
@@ -34,10 +35,11 @@ class Chromosome():
         self.y_start = y_start
         self.y_end   = y_end
         self.size    = size
-        
+
         # Graphical attributes
         self.horizontal  = horizontal
         self.round_edges = round_edges
+        self.color       = color
 
         # Elements
         self.labels  = []
@@ -69,7 +71,7 @@ class Chromosome():
             
             # Create the start and the end semicircles
             self.w1 = Wedge((center_x, self.y_start), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
-            self.w2 = Wedge((center_x, self.y_end),   radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
+            self.w2 = Wedge((center_x, self.y_end), radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
 	
     def __str__(self):
 
@@ -94,25 +96,32 @@ class Chromosome():
             None
         """
 
-        ## Add the chromosome horizontal lines 
-        #ax.plot([self.x_start, self.x_end], [self.y_start, self.y_start], ls='-', color='black', linewidth=1)
-        #ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
+        if self.horizontal:
+            # Add the chromosome horizontal lines 
+            ax.plot([self.x_start, self.x_end], [self.y_start, self.y_start], ls='-', color='black', linewidth=1)
+            ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
 
-        if self.round_edges and self.horizontal:
+            if self.round_edges:
+                # Add the semicircles on chromosomes
+                ax.add_patch(self.w1)
+                ax.add_patch(self.w2)
 
-            # Add the semicircles on chromosomes
-            ax.add_patch(self.w1)
-            ax.add_patch(self.w2)	
-        
-        elif self.round_edges and not self.horizontal:
+            # Add the chromosome vertical lines
+            ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
+            ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
+        else:
+            # Add the chromosome vertical lines
+            ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
+            ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
 
-            # Add the semicircles on chromosomes
-            ax.add_patch(self.w1)
-            ax.add_patch(self.w2)
-        
-        # Add the chromosome vertical lines
-        ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
-        ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
+            if self.round_edges:
+                # Add the semicircles on chromosomes
+                ax.add_patch(self.w1)
+                ax.add_patch(self.w2)
+                
+            # Add the chromosome horizontal lines 
+            ax.plot([self.x_start, self.x_end], [self.y_start, self.y_start], ls='-', color='black', linewidth=1)
+            ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
         
         # Plot the labels
         for label in self.labels:

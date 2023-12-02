@@ -13,7 +13,7 @@ CHR_FACTOR = 90
 X_lim = 180
 Y_lim = 100
 
-def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, ax) -> dict:
+def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
 
     # Initialize the step
     step = 0
@@ -48,7 +48,7 @@ def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, ax) -> dict:
                        y_end=y_end,
                        size=chr_dim,
                        horizontal=False,
-                       round_edges=True
+                       round_edges=round_edges,
         )
 
         c.add_label(x=3, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
@@ -59,7 +59,7 @@ def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, ax) -> dict:
     
     return C
 
-def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, ax) -> dict:
+def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
 
     # Initialize the step
     step = 0
@@ -94,7 +94,7 @@ def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, ax) -> dict:
                        y_end=y_end,
                        size=chr_dim,
                        horizontal=False,
-                       round_edges=True
+                       round_edges=round_edges,
         )
 
         c.add_label(x=X_lim - 3, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
@@ -111,7 +111,8 @@ def generate_links(ft_1: pd.DataFrame,
                    ft_2: pd.DataFrame, 
                    right_chromosomes: dict, 
                    left_chromosomes: dict, 
-                   color: str, 
+                   link_colors: str,
+                   straight_line: bool,
                    ax: plt.Axes
 ) -> None:
 
@@ -132,14 +133,29 @@ def generate_links(ft_1: pd.DataFrame,
     # Merge the two data frames
     df = pd.merge(ft_1, ft_2, on='busco_id', how='inner')
 
+    df = df.loc[df['sequence_x'].isin(left_chromosomes.keys())]
+    df = df.loc[df['sequence_y'].isin(right_chromosomes.keys())]
+
     # Initialize the links
     links = []
 
     # Iterate over the rows
     for index, row in df.iterrows():
 
+        if row['sequence_x'] in link_colors.keys():
+
+            color = link_colors[row['sequence_x']]
+        
+        elif row['sequence_y'] in link_colors.keys():
+
+            color = link_colors[row['sequence_y']]
+
+        else:
+
+            color = 'gray'
+
         # Generate the link
-        link = Link(C1=left_chromosomes[row['sequence_x']], C2=right_chromosomes[row['sequence_y']], p_1=row['gene_start_x'], p_2=row['gene_start_y'], color=color)
+        link = Link(C1=left_chromosomes[row['sequence_x']], C2=right_chromosomes[row['sequence_y']], p_1=row['gene_start_x'], p_2=row['gene_start_y'], color=color, straight_line=straight_line)
 
         link.plot(ax)
 
@@ -150,7 +166,11 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
                           palette: str in ['gray'] = 'gray',
                           title: str = 'Synteny plot',
                           dim: int = 2,
-                          dpi: int = 300
+                          figsize=(18, 10),
+                          dpi: int = 300,
+                          round_edges: bool = True,
+                          link_colors: dict = {},
+                          straight_line: bool = False,
 ):
 
     """
@@ -203,7 +223,7 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
     karyotype_2.columns = karyotype_2.columns.str.lower()
 
     # Create a new figure and axis
-    fig, ax = plt.subplots(figsize=(18, 10), dpi=dpi)
+    fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
 
     # Axis off
     ax.axis('off')
@@ -215,8 +235,8 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
     # Insert the plot title
     ax.text(X_lim / 2, Y_lim - 3, title, fontsize=20, ha='center')
 
-    left_chromosomes   = plot_left_karyotype(karyotype_1, dim, ax)
-    right_chromosomes  = plot_right_karyotype(karyotype_2, dim, ax)
+    left_chromosomes   = plot_left_karyotype(karyotype_1,  dim, round_edges, ax)
+    right_chromosomes  = plot_right_karyotype(karyotype_2, dim, round_edges, ax)
 
-    generate_links(ft_1, ft_2, right_chromosomes, left_chromosomes, color='gray', ax=ax)
+    generate_links(ft_1, ft_2, right_chromosomes, left_chromosomes, link_colors=link_colors, straight_line=straight_line, ax=ax)
 
