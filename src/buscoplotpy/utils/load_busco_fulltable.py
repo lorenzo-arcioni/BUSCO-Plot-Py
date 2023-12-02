@@ -51,5 +51,8 @@ def load_busco_fulltable(path: str,
     except:
         full_table['description'] = None
 
+    # Extract the sequence name from the 'sequence' column
+    full_table.loc[:, 'sequence'] = full_table['sequence'].map(lambda x: x.split(':')[0] if pd.notna(x) else None)
+
     # Return the loaded full table
     return full_table

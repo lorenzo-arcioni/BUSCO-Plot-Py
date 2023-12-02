@@ -75,9 +75,6 @@ def karyoplot(karyotype_file: str,
     # Remove rows where status is 'Missing'
     fulltable = fulltable[fulltable['status'] != 'Missing']
 
-    # Extract the sequence name from the 'sequence' column
-    fulltable.loc[:, 'sequence'] = fulltable['sequence'].map(lambda x: x.split(':')[0])
-
     # If the number of chromosomes is greater than chr_limit,
     #   then select the most significant chromosomes
 
@@ -128,7 +125,7 @@ def karyoplot(karyotype_file: str,
         y_start = (len(karyotype) - index) * dim
         y_end   = y_start + dim / 2
 
-        C = Chromosome(x_start, x_end, y_start, y_end)
+        C = Chromosome(x_start=x_start, x_end=x_end, y_start=y_start, y_end=y_end, size=chr_dim)
         C.add_label(x=0.0, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
         
 
