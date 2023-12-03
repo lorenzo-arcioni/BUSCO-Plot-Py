@@ -3,7 +3,7 @@
 
 class Label():
 
-    def __init__(self, x: float, y: float, text: str, ha: str = 'left', va: str = 'baseline'):
+    def __init__(self, x: float, y: float, text: str, rotation: float = 0, ha: str = 'left', va: str = 'baseline'):
 
         """
         Initialize the object with the given values.
@@ -21,6 +21,7 @@ class Label():
         self.text = text
 
         # Graphical attributes
+        self.rotation            = rotation
         self.horizontalalignment = ha
         self.verticalalignment   = va
     
@@ -33,4 +34,4 @@ class Label():
         """
 
         # Add the text to the axes at the specified coordinates
-        ax.text(self.x, self.y, self.text, ha=self.horizontalalignment, va=self.verticalalignment)
+        ax.text(self.x, self.y, self.text, rotation=self.rotation, ha=self.horizontalalignment, va=self.verticalalignment)

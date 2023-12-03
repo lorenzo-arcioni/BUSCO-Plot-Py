@@ -131,7 +131,7 @@ class Chromosome():
         for region in self.regions:
             ax.add_patch(region)
 
-    def add_label(self, x: float, y: float, text: str, ha: str = 'left', va: str = 'baseline'):
+    def add_label(self, x: float, y: float, text: str, rotation: float = 0, ha: str = 'left', va: str = 'baseline'):
 
         """
         Add a label to the plot at the specified coordinates.
@@ -143,7 +143,7 @@ class Chromosome():
             va (str, optional): The vertical alignment of the label. Defaults to 'baseline'.
         """
 
-        label = Label(x, y, text, ha=ha, va=va)
+        label = Label(x, y, text, rotation=rotation, ha=ha, va=va)
         self.labels.append(label)
 
     def add_region(self, anchor_point: (float, float), width: float, height: float, color: str = 'black', linewidth: int = 1):
@@ -175,3 +175,17 @@ class Chromosome():
         """
 
         return ((self.x_start + self.x_end) / 2.0, position * (self.y_end - self.y_start) / self.size + self.y_start)
+    
+    def get_horizontal_relative_position(self, position: int) -> (float, float):
+
+        """
+        Returns the position relative to the start and end of the chromosome.
+
+        Parameters:
+            position (int): The position to convert.
+        
+        Returns:
+            float: The position relative to the start and end of the chromosome.
+        """
+
+        return (position * (self.x_end - self.x_start) / self.size + self.x_start, (self.y_start + self.y_end) / 2.0)
