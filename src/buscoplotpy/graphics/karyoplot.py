@@ -3,11 +3,18 @@
 #Importing libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-from buscoplotpy.graphics.chromosome import Chromosome
 
+from buscoplotpy.graphics.chromosome import Chromosome
 from matplotlib.patches import Rectangle
 
-def karyoplot(karyotype_file: str, 
+# Define the colors
+GREEN = {'Complete':'green', 'Duplicated':'gray', 'Fragmented':'black'}
+AZURE = {'Complete':'#50c7fa', 'Duplicated':'gray', 'Fragmented':'black'}
+
+# Define constants
+CHR_FACTOR = 9.0 / 10.0
+
+def karyoplot(karyotype: pd.DataFrame, 
               output_file: str = '', 
               title: str = 'Karyoplot', 
               fulltable: pd.DataFrame = None, 
@@ -23,7 +30,7 @@ def karyoplot(karyotype_file: str,
     Plot a karyotype based on the karyotype file and the BUSCO fulltable.
 
     Parameters:
-        karyotype_file (str): The path to the karyotype file.
+        karyotype (pd.DataFrame): The karyotype DataFrame.
         output_file (str, optional): The path to save the output plot.
         title (str, optional): The title of the plot.
         fulltable (pd.DataFrame): The BUSCO's full table DataFrame.
@@ -33,41 +40,16 @@ def karyoplot(karyotype_file: str,
 
     Output:
         - The karyotype plot in png format.
+
     Returns:
         None
     """
-
-    # Define the colors
-    green = ['green', 'gray', 'black']
-    azure = ['#5999ff', '#ffff05', '#21211d']
-    selected = []
     
     # Selecting the right palette
     if palette == 'green':
-        selected = green
+        selected = GREEN
     elif palette == 'azure':
-        selected = azure
-
-    def get_color(status: str, palette: str = 'green') -> str:
-
-        """
-        Get the color based on the status of the item.
-        Parameters:
-            item (dict): The item containing the status.
-        Returns:
-            str: The color corresponding to the status.
-        """
-        
-        # Reurn the color based on the palette/status
-        if status == 'Complete':
-            return selected[0]
-        elif status == 'Duplicated':
-            return selected[1]
-        else:
-            return selected[2]
-
-    # Read the karyotype file into a DataFrame
-    karyotype = pd.read_csv(karyotype_file, sep="\t")
+        selected = AZURE
 
     # Lowercase the column names
     karyotype.columns = karyotype.columns.str.lower()
@@ -77,7 +59,6 @@ def karyoplot(karyotype_file: str,
 
     # If the number of chromosomes is greater than chr_limit,
     #   then select the most significant chromosomes
-
     if len(karyotype) > chrs_limit:
 
         #if len(fulltable) == 0:
@@ -105,7 +86,7 @@ def karyoplot(karyotype_file: str,
     ax.set_ylim([0, Y_lim])
 
     # Insert the plot title
-    ax.text(X_lim / 2, Y_lim - 1, title, fontsize=20, ha='center')
+    ax.text(X_lim / 2, Y_lim - 1, karyotype['organism'][0] + ' ' + title, fontsize=20, ha='center')
 
     # Calculate the maximum length of the chromosome name
     chr_max_len = len(max(karyotype['chr'], key=len))
@@ -121,11 +102,14 @@ def karyoplot(karyotype_file: str,
 
         # Define the coordinates for the rectangle
         x_start = chr_max_len / 2
-        x_end   = x_start + chr_dim * (X_lim*9/10) / chr_max_dim
+        x_end   = x_start + chr_dim * (X_lim * CHR_FACTOR) / chr_max_dim
         y_start = (len(karyotype) - index) * dim
         y_end   = y_start + dim / 2
 
+        # Create the chromosome
         C = Chromosome(x_start=x_start, x_end=x_end, y_start=y_start, y_end=y_end, size=chr_dim)
+
+        # Add the name of the chromosome
         C.add_label(x=0.0, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
         
 
@@ -147,15 +131,15 @@ def karyoplot(karyotype_file: str,
             #:               (xy)---- width -----+
 
             # Add the seleted region to the chromosome
-            C.add_region(anchor_point=anchor_point, width=width, height=height, color=get_color(item['status'], palette), linewidth=1)
+            C.add_region(anchor_point=anchor_point, width=width, height=height, color=selected[item['status']], linewidth=1)
         
         # Plot the chromosome
         C.plot(ax)
 
     # Write the legend
-    plt.legend(handles=[Rectangle((0,0),1,1, color=selected[0]), 
-                        Rectangle((0,0),1,1, color=selected[1]), 
-                        Rectangle((0,0),1,1, color=selected[2])],
+    plt.legend(handles=[Rectangle((0,0),1,1, color=selected['Complete']), 
+                        Rectangle((0,0),1,1, color=selected['Duplicated']), 
+                        Rectangle((0,0),1,1, color=selected['Fragmented'])],
                         labels=['Complete', 'Duplicated', 'Fragmented'], 
                         loc='upper right'
     )

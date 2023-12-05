@@ -127,6 +127,7 @@ class Chromosome():
                 ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
         
         if self.color:
+
             # Fill the chromosome with the specified color
             ax.add_patch(Rectangle(xy=(self.x_start, self.y_start), width=self.x_end - self.x_start, height=self.y_end - self.y_start, color=self.color))
 
