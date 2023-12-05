@@ -11,6 +11,7 @@ class Label():
             x (float): The x-coordinate of the object.
             y (float): The y-coordinate of the object.
             text (str): The text content of the object.
+            rotation (float): The rotation of the object in degrees. Default is 0.
             ha (str): The horizontal alignment of the object. Default is 'left'.
             va (str): The vertical alignment of the object. Default is 'baseline'.
         """
