@@ -3,6 +3,7 @@
 #Importing libraries
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
 # Import the chromosome and link classes
 from buscoplotpy.graphics.chromosome import Chromosome
@@ -10,7 +11,7 @@ from buscoplotpy.graphics.link import Link
 
 # Set the constants
 CHR_DISTANCE = 2
-CHR_FACTOR   = 0.98
+CHR_FACTOR   = 0.99
 
 # Set the x and y limits
 VERTICAL_X_LIM   = 0
@@ -18,7 +19,7 @@ VERTICAL_Y_LIM   = 0
 HORIZONTAL_X_LIM = 0
 HORIZONTAL_Y_LIM = 0
 
-def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
+def generate_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) -> dict:
 
     """
     Plot the left karyotype chromosomes.
@@ -42,6 +43,12 @@ def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax
     # Left chromosomes dictionary
     C = {}
 
+    # Get chromosome color
+    if 'color' in karyotype.columns:
+        color = karyotype['color'][0]
+    else:
+        color = ''
+
     # Plot the karyotypes
     for index, row in karyotype.iterrows():
 
@@ -57,9 +64,6 @@ def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax
 
         step = y_end
 
-        # Get the color
-        color = 'gray'
-
         # Create a Chromosome object
         c = Chromosome(x_start=x_start,
                        x_end=x_end,
@@ -74,14 +78,12 @@ def plot_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax
         # Add the chromosome label
         c.add_label(x=3, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
 
-        # Plot the chromosome
-        c.plot(ax)
-
         # Add the chromosome to the dictionary
         C[row['chr']] = c
     
     return C
-def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
+
+def generate_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) -> dict:
 
     """
     Plot the left karyotype chromosomes.
@@ -105,6 +107,12 @@ def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, a
     # Right chromosomes dict
     C = {}
 
+    # Get chromosome color
+    if 'color' in karyotype.columns:
+        color = karyotype['color'][0]
+    else:
+        color = ''
+
     # Plot the karyotypes
     for index, row in karyotype.iterrows():
 
@@ -123,24 +131,23 @@ def plot_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, a
         # Get the color
         color = 'gray'
 
-        c = Chromosome(x_start=x_start,
-                       x_end=x_end,
+        c = Chromosome(x_start=x_end,# This switch is for visualize the colors correctly
+                       x_end=x_start,    # This switch is for visualize the colors correctly
                        y_start=y_start,
                        y_end=y_end,
                        size=chr_dim,
                        horizontal=False,
                        round_edges=round_edges,
+                       color=color
         )
 
         c.add_label(x=VERTICAL_X_LIM - 3, y=(y_start + y_end) / 2, text=row['chr'], ha='center', va='center')
-
-        c.plot(ax)
 
         C[row['chr']] = c
 
     return C
 
-def plot_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
+def generate_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) -> dict:
 
     # Initialize the step
     step = 0
@@ -150,6 +157,12 @@ def plot_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, 
 
     # Right chromosomes dict
     C = {}
+
+    # Get chromosome color
+    if 'color' in karyotype.columns:
+        color = karyotype['color'][0]
+    else:
+        color = ''
 
     # Plot the karyotypes
     for index, row in karyotype.iterrows():
@@ -174,19 +187,18 @@ def plot_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, 
                        y_start=y_start,
                        y_end=y_end,
                        size=chr_dim,
-                       horizontal=False,
+                       horizontal=True,
                        round_edges=round_edges,
+                       color=color
         )
 
         c.add_label(x=(x_start + x_end) / 2.0, y=max_chr_name_length, text=row['chr'], rotation=90, ha='center', va='center')
-
-        c.plot(ax)
 
         C[row['chr']] = c
 
     return C
 
-def plot_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) -> dict:
+def generate_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) -> dict:
     # Initialize the step
     step = 0
 
@@ -198,6 +210,12 @@ def plot_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) 
 
     # Right chromosomes dict
     C = {}
+
+    # Get chromosome color
+    if 'color' in karyotype.columns:
+        color = karyotype['color'][0]
+    else:
+        color = ''
 
     # Plot the karyotypes
     for index, row in karyotype.iterrows():
@@ -216,16 +234,15 @@ def plot_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool, ax) 
 
         c = Chromosome(x_start=x_start,
                        x_end=x_end,
-                       y_start=y_start,
-                       y_end=y_end,
+                       y_start=y_end,# This switch is for visualize the colors correctly
+                       y_end=y_start,# This switch is for visualize the colors correctly
                        size=chr_dim,
-                       horizontal=False,
+                       horizontal=True,
                        round_edges=round_edges,
+                       color=color
         )
 
         c.add_label(x=(x_start + x_end) / 2.0, y=HORIZONTAL_Y_LIM - max_chr_name_length - 5, text=row['chr'], rotation=90, ha='center', va='center')
-
-        c.plot(ax)
 
         C[row['chr']] = c
 
@@ -238,8 +255,7 @@ def generate_links(ft_1: pd.DataFrame,
                    link_colors: str,
                    straight_line: bool,
                    horizontal: bool,
-                   ax: plt.Axes
-) -> None:
+) -> list:
     
     """
     Generates and plots links between two data frames.
@@ -279,7 +295,7 @@ def generate_links(ft_1: pd.DataFrame,
         elif row['sequence_y'] in link_colors.keys():
             color = link_colors[row['sequence_y']]
         else:
-            color = 'gray'
+            color = '#d1d1d1'
 
         # Generate the link
         link = Link(C1=left_chromosomes[row['sequence_x']], 
@@ -291,8 +307,36 @@ def generate_links(ft_1: pd.DataFrame,
                     horizontal=horizontal
                )
         
-        # Plot the link
-        link.plot(ax)
+        # Add the link to the links list
+        links.append(link)
+    
+    return links
+
+def plot_chromosomes(chromosomes: dict, ax: plt.Axes) -> None:
+    """
+    Plots the chromosomes on the given axes.
+    
+    Parameters:
+        chromosomes (dict): Dictionary mapping sequence names to Chromosome objects.
+        ax (plt.Axes): Matplotlib axes object to plot the chromosomes on.
+    Returns:
+        None
+    """
+    for c in chromosomes.values():
+        c.plot(ax)
+
+def plot_links(links: list, ax: plt.Axes) -> None:
+    """
+    Plots the links on the given axes.
+    
+    Parameters:
+        links (list): List of Link objects.
+        ax (plt.Axes): Matplotlib axes object to plot the links on.
+    Returns:
+        None
+    """
+    for l in links:
+        l.plot(ax)
 
 def vertical_synteny_plot(ft_1: pd.DataFrame, 
                           ft_2: pd.DataFrame,
@@ -305,6 +349,7 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
                           round_edges: bool = True,
                           link_colors: dict = {},
                           straight_line: bool = False,
+                          output_path: str = None
 ):
     """
     Generate a vertical synteny plot.
@@ -350,11 +395,28 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
     ax.text(VERTICAL_X_LIM / 2, VERTICAL_Y_LIM - 3, title, fontsize=20, ha='center')
 
     # Plot left and right karyotypes
-    left_chromosomes = plot_left_karyotype(karyotype_1, dim, round_edges, ax)
-    right_chromosomes = plot_right_karyotype(karyotype_2, dim, round_edges, ax)
+    left_chromosomes  = generate_left_karyotype(karyotype_1, dim, round_edges)
+    right_chromosomes = generate_right_karyotype(karyotype_2, dim, round_edges)
 
     # Generate and plot links
-    generate_links(ft_1, ft_2, right_chromosomes, left_chromosomes, link_colors=link_colors, straight_line=straight_line, horizontal=False, ax=ax)
+    links = generate_links(ft_1, ft_2, right_chromosomes, left_chromosomes, link_colors=link_colors, straight_line=straight_line, horizontal=False)
+
+    # Plot the links
+    plot_links(links, ax)
+
+    # Plot the chromosomes
+    plot_chromosomes(left_chromosomes, ax)
+    plot_chromosomes(right_chromosomes, ax)
+
+    # Write the legend
+    plt.legend(handles=[Rectangle((0,0),1,1, color=karyotype_1['color'][0]), 
+                        Rectangle((0,0),1,1, color=karyotype_2['color'][0])],
+                        labels=[karyotype_1['organism'][0], karyotype_2['organism'][0]], 
+                        loc='upper right'
+    )
+
+    if output_path is not None:
+        plt.savefig(output_path, dpi=dpi)
 
 def horizontal_synteny_plot(ft_1: pd.DataFrame, 
                             ft_2: pd.DataFrame,
@@ -366,7 +428,8 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
                             dpi: int = 300,
                             round_edges: bool = True,
                             link_colors: dict = {},
-                            straight_line: bool = False
+                            straight_line: bool = False,
+                            output_path: str = None
 ):
     """
     Generate a horizontal synteny plot.
@@ -409,12 +472,27 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
     ax.set_ylim([0, HORIZONTAL_Y_LIM])
 
     # Insert the plot title
-    ax.text(HORIZONTAL_X_LIM / 2, HORIZONTAL_Y_LIM - 3, title, fontsize=20, ha='center')
+    ax.text(HORIZONTAL_X_LIM / 2, HORIZONTAL_Y_LIM - 3, karyotype_1['organism'][0] + ' - ' + karyotype_2['organism'][0] + ' ' + title, fontsize=20, ha='center')
 
     # Plot left and right karyotypes
-    bottom_chromosomes = plot_bottom_karyotype(karyotype_1, dim, round_edges, ax)
-    top_chromosomes    = plot_up_karyotype(karyotype_2, dim, round_edges, ax)
+    bottom_chromosomes = generate_bottom_karyotype(karyotype_1, dim, round_edges)
+    top_chromosomes    = generate_up_karyotype(karyotype_2, dim, round_edges)
 
     # Generate and plot links
-    generate_links(ft_1, ft_2, top_chromosomes, bottom_chromosomes, link_colors=link_colors, straight_line=straight_line, horizontal=True, ax=ax)
+    links = generate_links(ft_1, ft_2, top_chromosomes, bottom_chromosomes, link_colors=link_colors, straight_line=straight_line, horizontal=True)
+
+    plot_links(links, ax)
+
+    plot_chromosomes(bottom_chromosomes, ax)
+    plot_chromosomes(top_chromosomes, ax)
+
+    # Write the legend
+    plt.legend(handles=[Rectangle((0,0),1,1, color=karyotype_1['color'][0]), 
+                        Rectangle((0,0),1,1, color=karyotype_2['color'][0])],
+                        labels=[karyotype_1['organism'][0], karyotype_2['organism'][0]], 
+                        loc='upper right'
+    )
+
+    if output_path is not None:
+        plt.savefig(output_path, dpi=dpi)
 

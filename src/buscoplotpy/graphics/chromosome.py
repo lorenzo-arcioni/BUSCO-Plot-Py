@@ -14,7 +14,7 @@ class Chromosome():
                        size: float,
                        horizontal: bool = True,
                        round_edges: bool = False,
-                       color: str = 'gray'
+                       color: str = ''
     ):
 		
         """
@@ -52,12 +52,12 @@ class Chromosome():
             radius   = (self.y_end - self.y_start)/2.0
 
             # Calculate the angles of the semicircles
-            theta1   = -90.0
-            theta2   =  90.0
+            theta1   = 0.0
+            theta2   = 360.0
             
             # Create the start and the end semicircles
-            self.w1 = Wedge((self.x_start, center_y), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
-            self.w2 = Wedge((self.x_end,   center_y), radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
+            self.w1 = Wedge((self.x_start + radius/2, center_y), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=1)
+            self.w2 = Wedge((self.x_end   - radius/2, center_y), radius, theta1, theta2, width=0.00001, facecolor='white', edgecolor='black', linewidth=1)
 
         elif not self.horizontal and self.round_edges:
 
@@ -67,7 +67,7 @@ class Chromosome():
 
             # Calculate the angles of the semicircles
             theta1   =  0.0
-            theta2   =  180.0
+            theta2   =  360.0
             
             # Create the start and the end semicircles
             self.w1 = Wedge((center_x, self.y_start), radius, theta2, theta1, width=0.00001, facecolor='white', edgecolor='black', linewidth=0.6)
@@ -105,10 +105,12 @@ class Chromosome():
                 # Add the semicircles on chromosomes
                 ax.add_patch(self.w1)
                 ax.add_patch(self.w2)
+            
+            else:
+                # Add the chromosome vertical lines
+                ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
+                ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
 
-            # Add the chromosome vertical lines
-            ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
-            ax.plot([self.x_end,   self.x_end],   [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
         else:
             # Add the chromosome vertical lines
             ax.plot([self.x_start, self.x_start], [self.y_start, self.y_end], ls='-', color='black', linewidth=1)
@@ -118,11 +120,16 @@ class Chromosome():
                 # Add the semicircles on chromosomes
                 ax.add_patch(self.w1)
                 ax.add_patch(self.w2)
-                
-            # Add the chromosome horizontal lines 
-            ax.plot([self.x_start, self.x_end], [self.y_start, self.y_start], ls='-', color='black', linewidth=1)
-            ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
+
+            else: 
+                # Add the chromosome horizontal lines
+                ax.plot([self.x_start, self.x_end], [self.y_start, self.y_start], ls='-', color='black', linewidth=1)
+                ax.plot([self.x_start, self.x_end], [self.y_end,   self.y_end],   ls='-', color='black', linewidth=1)
         
+        if self.color:
+            # Fill the chromosome with the specified color
+            ax.add_patch(Rectangle(xy=(self.x_start, self.y_start), width=self.x_end - self.x_start, height=self.y_end - self.y_start, color=self.color))
+
         # Plot the labels
         for label in self.labels:
             label.plot(ax)
@@ -162,7 +169,7 @@ class Chromosome():
         region = Rectangle(xy=anchor_point, width=width, height=height, color=color, linewidth=linewidth)
         self.regions.append(region)
     
-    def get_vertical_relative_position(self, position: int) -> (float, float):
+    def get_relative_position(self, position: int) -> (float, float):
 
         """
         Returns the position relative to the start and end of the chromosome.
@@ -174,18 +181,7 @@ class Chromosome():
             float: The position relative to the start and end of the chromosome.
         """
 
-        return ((self.x_start + self.x_end) / 2.0, position * (self.y_end - self.y_start) / self.size + self.y_start)
-    
-    def get_horizontal_relative_position(self, position: int) -> (float, float):
-
-        """
-        Returns the position relative to the start and end of the chromosome.
-
-        Parameters:
-            position (int): The position to convert.
-        
-        Returns:
-            float: The position relative to the start and end of the chromosome.
-        """
-
-        return (position * (self.x_end - self.x_start) / self.size + self.x_start, (self.y_start + self.y_end) / 2.0)
+        if self.horizontal:
+            return (position * (self.x_end - self.x_start) / self.size + self.x_start, self.y_end)            
+        else:
+            return (self.x_end, position * (self.y_end - self.y_start) / self.size + self.y_start)
