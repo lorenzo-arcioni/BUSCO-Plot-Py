@@ -84,7 +84,7 @@ def organism_busco_barplot(df: pd.DataFrame,
     values_matrix = values_matrix.T
 
     # Create the plot
-    fig, axs = plt.subplots(figsize=(20, len(species_names)+1), ncols=1, nrows=1)
+    fig, axs = plt.subplots(figsize=(20, len(species_names)+3), ncols=1, nrows=1)
     
     # Create the individual bars with different colors
     for idx, label in enumerate(labels):
@@ -98,10 +98,10 @@ def organism_busco_barplot(df: pd.DataFrame,
     axs.xaxis.set_major_locator(ticker.MultipleLocator(5))
     
     # Customize the x and y axes and tick labels
-    axs.set_xlabel('Percentage', fontsize=18)
-    axs.set_ylabel('Organism', fontsize=18)
-    axs.set_title(dataset_name + ' ' + group_name + ' - Barplot of completeness of assembly', fontsize=20, weight='bold', pad=30)
-    axs.tick_params(labelsize=15)
+    axs.set_xlabel('Percentage', fontsize=20)
+    axs.set_ylabel('Organism', fontsize=20)
+    axs.set_title(dataset_name + ' ' + group_name + ' - Barplot of completeness of assembly', fontsize=22, weight='bold', pad=30)
+    axs.tick_params(labelsize=18)
 
     # Set the x-axis limits
     axs.set_xlim(0, 100)
@@ -114,7 +114,7 @@ def organism_busco_barplot(df: pd.DataFrame,
 
     # Create the legend
     patches_list = [Patch(color=colors[i], label=labels[i], alpha=0.75) for i in range(len(labels))]
-    axs.legend(handles=patches_list, bbox_to_anchor=(-0.5, 1), fontsize=15)
+    axs.legend(handles=patches_list, bbox_to_anchor=(-0.5, 1), fontsize=18)
 
     
     # Create the values table
