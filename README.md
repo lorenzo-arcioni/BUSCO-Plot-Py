@@ -61,9 +61,17 @@ BUSCO searches the provided genome or transcriptome against the reference databa
 
 - **Missing** BUSCOs: Genes that are entirely absent from the assembly.
 
-The karyotype plot can help us to visualize ...
+The karyotype plot can help us to visualize position (and the status) of BUSCOs on the relative chromosomes.
+
+<p align="center">
+<img src="./images/karyoplot.png">
+</p>
 
 ### BUSCO synteny plot
+
+<p align="center">
+<img src="./images/synteny.png">
+</p>
 
 ### Other library's features
 
