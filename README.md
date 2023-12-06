@@ -23,8 +23,8 @@ The function takes in input a dataframe that contains all (json summary file) in
 
 ```python
 def organism_busco_barplot(df: pd.DataFrame,
-                           group_name: str = 'Alveolata',
-                           organism_name: str = 'Amphidinium carterae',
+                           group_name: str = 'Chlorophyta',
+                           organism_name: str = 'Bathycoccus prasinos',
                            out_path: str = './', 
                            filename: str = 'busco_barplot',
                            dpi: int = 300,
@@ -33,7 +33,7 @@ def organism_busco_barplot(df: pd.DataFrame,
 ```
 
 <p align="center">
-<img src="./images/BUSCO_barplot_completeness.png" width=700px >
+<img src="./images/BUSCO_barplot_completeness.png">
 </p>
 
 **Parameters:**
