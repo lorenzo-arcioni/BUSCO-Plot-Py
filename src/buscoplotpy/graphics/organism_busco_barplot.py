@@ -84,7 +84,7 @@ def organism_busco_barplot(df: pd.DataFrame,
     values_matrix = values_matrix.T
 
     # Create the plot
-    fig, axs = plt.subplots(figsize=(22, len(species_names)+5), ncols=1, nrows=1)
+    fig, axs = plt.subplots(figsize=(20, len(species_names)+5), ncols=1, nrows=1)
     
     # Create the individual bars with different colors
     for idx, label in enumerate(labels):
@@ -101,7 +101,7 @@ def organism_busco_barplot(df: pd.DataFrame,
     axs.set_xlabel('Percentage', fontsize=28)
     axs.set_ylabel('Organism', fontsize=28)
     axs.set_title(dataset_name + ' ' + group_name + ' - Barplot of completeness of assembly', fontsize=30, weight='bold', pad=30)
-    axs.tick_params(labelsize=27)
+    axs.tick_params(labelsize=26)
 
     # Set the x-axis limits
     axs.set_xlim(0, 100)
