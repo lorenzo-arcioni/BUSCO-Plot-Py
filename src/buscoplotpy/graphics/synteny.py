@@ -378,6 +378,7 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
                           link_colors: dict = {},
                           straight_line: bool = False,
                           output_path: str = None,
+                          bbox_inches: str = 'tight',
                           plt_show: bool = False
 ):
     """
@@ -448,9 +449,12 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
                         loc='upper right'
     )
 
+    # Plt tight layout
+    plt.tight_layout()
+
     # Save the plot if output path is provided
     if output_path is not None:
-        plt.savefig(output_path, dpi=dpi)
+        plt.savefig(output_path, dpi=dpi, bbox_inches=bbox_inches)
     
     # Show the plot
     if plt_show:
@@ -470,6 +474,7 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
                             link_colors: dict = {},
                             straight_line: bool = False,
                             output_path: str = None,
+                            bbox_inches: str = 'tight',
                             plt_show: bool = False
 ):
     """
@@ -542,7 +547,7 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
 
     # Save the plot if output path is provided
     if output_path is not None:
-        plt.savefig(output_path, dpi=dpi)
+        plt.savefig(output_path, dpi=dpi, bbox_inches=bbox_inches)
     
     # Show the plot if plt_show is True
     if plt_show:
