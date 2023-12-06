@@ -74,6 +74,10 @@ The karyotype plot can help us to visualize position (and the status) of BUSCOs 
 <img src="./images/synteny.png">
 </p>
 
+<p align="center">
+<img src="./images/synteny.png">
+</p>
+
 ### Other library's features
 
 There are some auxiliary functions that help the user to correctly load the BUSCO result files into pandas dataframe.
