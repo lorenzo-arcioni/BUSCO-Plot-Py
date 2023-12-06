@@ -49,6 +49,20 @@ def organism_busco_barplot(df: pd.DataFrame,
 
 ### BUSCO karyotype plot
 
+A karyotype plot is a graphical representation of the chromosomes of an organism arranged in a standard format based on their size, shape, and banding patterns. It provides a visual overview of the complete set of chromosomes present in an individual or a species.
+
+BUSCO searches the provided genome or transcriptome against the reference database of universal single-copy orthologs. It identifies and counts the number of BUSCOs that are present, duplicated, fragmented, or missing in the target assembly.
+
+- **Complete** BUSCOs: Genes that are found in the assembly exactly once, indicating a complete representation.
+
+- **Duplicated** BUSCOs: Genes that are found more than once, suggesting potential gene duplications in the assembly.
+
+- **Fragmented** BUSCOs: Genes that are present in the assembly but are incomplete or fragmented.
+
+- **Missing** BUSCOs: Genes that are entirely absent from the assembly.
+
+The karyotype plot can help us to visualize ...
+
 ### BUSCO synteny plot
 
 ### Other library's features
