@@ -64,9 +64,12 @@ BUSCO searches the provided genome or transcriptome against the reference databa
 The karyotype plot can help us to visualize position (and the status) of BUSCOs on the relative chromosomes.
 
 <p align="center">
-<img src="./images/karyoplot.png">
+<img src="./images/karyoplot1.png">
 </p>
 
+<p align="center">
+<img src="./images/karyoplot2.png">
+</p>
 
 ### BUSCO synteny plot
 
