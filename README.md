@@ -75,7 +75,7 @@ The karyotype plot can help us to visualize position (and the status) of BUSCOs 
 </p>
 
 <p align="center">
-<img src="./images/synteny.png">
+<img src="./images/Vsynteny.png">
 </p>
 
 ### Other library's features
