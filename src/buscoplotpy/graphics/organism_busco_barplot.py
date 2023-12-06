@@ -5,6 +5,7 @@ import matplotlib.ticker as ticker
 import pandas as pd
 
 from matplotlib.patches import Patch
+from matplotlib.font_manager import FontProperties
 
 def organism_busco_barplot(df: pd.DataFrame,
                            group_name: str = '',
