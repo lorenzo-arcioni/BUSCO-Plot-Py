@@ -5,7 +5,7 @@ from matplotlib.patches import Wedge, Rectangle
 from buscoplotpy.graphics.label import Label
 
 
-class Chromosome():
+class Chromosome:
 
     def __init__(self, x_start: float, 
                        x_end: float, 

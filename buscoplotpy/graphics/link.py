@@ -10,14 +10,15 @@ class Link:
                  straight_line: bool = False, horizontal: bool = False):
         """
         Initialize the Line class.
+
         Parameters:
-        C1 (Chromosome): The first chromosome object.
-        C2 (Chromosome): The second chromosome object.
-        p_1 (int): The position on the first chromosome.
-        p_2 (int): The position on the second chromosome.
-        color (str, optional): The color of the line. Defaults to '#d1d1d1'.
-        straight_line (bool, optional): Whether the line should be straight. Defaults to False.
-        horizontal (bool, optional): Whether the line should be horizontal. Defaults to False.
+            C1 (Chromosome): The first chromosome object.
+            C2 (Chromosome): The second chromosome object.
+            p_1 (int): The position on the first chromosome.
+            p_2 (int): The position on the second chromosome.
+            color (str, optional): The color of the line. Defaults to '#d1d1d1'.
+            straight_line (bool, optional): Whether the line should be straight. Defaults to False.
+            horizontal (bool, optional): Whether the line should be horizontal. Defaults to False.
         """
 
         # Set Link properties

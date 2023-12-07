@@ -6,6 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import sys
+sys.path.insert(0, '..')
+
 project = 'BUSCO-Plot-Py'
 copyright = '2023, Lorenzo Arcioni'
 author = 'Lorenzo Arcioni'
@@ -16,20 +19,14 @@ release = '0.0.2'
 
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosectionlabel',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.duration',
-    'sphinx.ext.doctest',
-    'sphinx.ext.graphviz',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.mathjax',
 ]
-
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+rst_epilog = """
+.. |ProjectVersion| replace:: 1.0.0
+"""
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

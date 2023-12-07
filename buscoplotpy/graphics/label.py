@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # This class represents a label on a plot.
 
-class Label():
+class Label:
 
     def __init__(self, x: float, y: float, text: str, rotation: float = 0, ha: str = 'left', va: str = 'baseline'):
 
