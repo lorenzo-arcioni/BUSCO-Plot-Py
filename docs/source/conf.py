@@ -16,7 +16,14 @@ release = '0.0.2'
 
 extensions = [
     'sphinx.ext.autodoc',
-    # ... 
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.graphviz',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.mathjax',
+    'substitutioncodeblock',
 ]
 
 templates_path = ['_templates']
