@@ -3,6 +3,10 @@
 # Questo può essere vuoto se non hai bisogno di eseguire alcuna inizializzazione specifica.
 # Tuttavia, spesso vengono inseriti import di moduli o variabili qui.
 
+# Esempio: importare un modulo
+from load_busco_fulltable import load_busco_fulltable
+from load_json_summary import load_json_summary
+
 # Esempio: importare una funzione da un modulo all'interno del pacchetto
 class MyClass:
     def __init__(self, version):
