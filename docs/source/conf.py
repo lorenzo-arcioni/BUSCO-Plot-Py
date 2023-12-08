@@ -7,9 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import sys
-import os
 
-sys.path.insert(0, '..')
+sys.path.insert(0, '../..')
 
 project = 'BUSCO-Plot-Py'
 copyright = '2023, Lorenzo Arcioni'

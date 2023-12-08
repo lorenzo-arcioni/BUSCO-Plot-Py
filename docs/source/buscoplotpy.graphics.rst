@@ -55,7 +55,7 @@ buscoplotpy.graphics.synteny module
 Module contents
 ---------------
 
-.. automodule:: graphics
+.. automodule:: buscoplotpy.graphics
    :members:
    :undoc-members:
    :show-inheritance:
