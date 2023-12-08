@@ -55,7 +55,7 @@
 <li class="toctree-l4"><a class="reference internal" href="buscoplotpy.utils.html">buscoplotpy.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="buscoplotpy.html#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buscoplotpy.html#module-buscoplotpy">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -93,26 +93,336 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="buscoplotpy-graphics-chromosome-module">
-<h2>buscoplotpy.graphics.chromosome module<a class="headerlink" href="#buscoplotpy-graphics-chromosome-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.chromosome">
+<span id="buscoplotpy-graphics-chromosome-module"></span><h2>buscoplotpy.graphics.chromosome module<a class="headerlink" href="#module-buscoplotpy.graphics.chromosome" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.chromosome.</span></span><span class="sig-name descname"><span class="pre">Chromosome</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome.add_label">
+<span class="sig-name descname"><span class="pre">add_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">va</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'baseline'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome.add_label" title="Link to this definition"></a></dt>
+<dd><p>Add a label to the plot at the specified coordinates.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (float): The x-coordinate of the label.
+y (float): The y-coordinate of the label.
+text (str): The text of the label.
+ha (str, optional): The horizontal alignment of the label. Defaults to ‘left’.
+va (str, optional): The vertical alignment of the label. Defaults to ‘baseline’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome.add_region">
+<span class="sig-name descname"><span class="pre">add_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anchor_point:</span> <span class="pre">(&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'float'&gt;)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome.add_region" title="Link to this definition"></a></dt>
+<dd><p>Adds a region to the list of regions.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>anchor_point (Tuple[float, float]): The anchor point of the region.
+width (float): The width of the region.
+height (float): The height of the region.
+color (str, optional): The color of the region. Defaults to ‘black’.
+linewidth (int, optional): The linewidth of the region. Defaults to 1.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome.get_relative_position">
+<span class="sig-name descname"><span class="pre">get_relative_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position:</span> <span class="pre">int)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'float'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome.get_relative_position" title="Link to this definition"></a></dt>
+<dd><p>Returns the position relative to the start and end of the chromosome.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>position (int): The position to convert.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The position relative to the start and end of the chromosome.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome.plot" title="Link to this definition"></a></dt>
+<dd><p>Plot the chromosome on the given axes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>ax: The axes to plot on.</p></li>
+<li><p>round_edges: A boolean indicating whether to round the edges of the chromosome.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="buscoplotpy-graphics-karyoplot-module">
-<h2>buscoplotpy.graphics.karyoplot module<a class="headerlink" href="#buscoplotpy-graphics-karyoplot-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.karyoplot">
+<span id="buscoplotpy-graphics-karyoplot-module"></span><h2>buscoplotpy.graphics.karyoplot module<a class="headerlink" href="#module-buscoplotpy.graphics.karyoplot" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.karyoplot.karyoplot">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.karyoplot.</span></span><span class="sig-name descname"><span class="pre">karyoplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">karyotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Karyoplot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulltable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chrs_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plt_show</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="k"><span class="pre">False</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_inches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'tight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.karyoplot.karyoplot" title="Link to this definition"></a></dt>
+<dd><p>Plot a karyotype based on the karyotype file and the BUSCO fulltable.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>karyotype (pd.DataFrame): The karyotype DataFrame.
+output_file (str, optional): The path to save the output plot.
+title (str, optional): The title of the plot.
+fulltable (pd.DataFrame): The BUSCO’s full table DataFrame.
+dpi (int, optional): The DPI (dots per inch) of the output plot. Default is 300.
+chrs_limit (int, optional): The maximum number of chromosomes to plot. Default is 30.
+plt_show (bool, optional): Whether to show the plot. Default is False.</p>
+</dd>
+<dt>Output:</dt><dd><ul class="simple">
+<li><p>The karyotype plot in png format.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="buscoplotpy-graphics-label-module">
-<h2>buscoplotpy.graphics.label module<a class="headerlink" href="#buscoplotpy-graphics-label-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.label">
+<span id="buscoplotpy-graphics-label-module"></span><h2>buscoplotpy.graphics.label module<a class="headerlink" href="#module-buscoplotpy.graphics.label" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.label.Label">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.label.</span></span><span class="sig-name descname"><span class="pre">Label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">va</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'baseline'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.label.Label" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.label.Label.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.label.Label.plot" title="Link to this definition"></a></dt>
+<dd><p>Plot the text on the given axes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>ax (matplotlib.axes.Axes): The axes on which to plot the text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="buscoplotpy-graphics-link-module">
-<h2>buscoplotpy.graphics.link module<a class="headerlink" href="#buscoplotpy-graphics-link-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.link">
+<span id="buscoplotpy-graphics-link-module"></span><h2>buscoplotpy.graphics.link module<a class="headerlink" href="#module-buscoplotpy.graphics.link" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.link.Link">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.link.</span></span><span class="sig-name descname"><span class="pre">Link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#buscoplotpy.graphics.chromosome.Chromosome" title="buscoplotpy.graphics.chromosome.Chromosome"><span class="pre">Chromosome</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">C2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#buscoplotpy.graphics.chromosome.Chromosome" title="buscoplotpy.graphics.chromosome.Chromosome"><span class="pre">Chromosome</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#d1d1d1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.link.Link" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.link.Link.bezier_curve">
+<span class="sig-name descname"><span class="pre">bezier_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.link.Link.bezier_curve" title="Link to this definition"></a></dt>
+<dd><p>Calculate the Bezier curve at time t.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>t (float): The time parameter between 0 and 1.
+p0 (float): The starting point of the curve.
+p1 (float): The first control point.
+p2 (float): The second control point.
+p3 (float): The ending point of the curve.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The position on the Bezier curve at time t.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.link.Link.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.link.Link.plot" title="Link to this definition"></a></dt>
+<dd><p>Plot the link on the given axes.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The axes on which to plot the link.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="buscoplotpy-graphics-organism-busco-barplot-module">
-<h2>buscoplotpy.graphics.organism_busco_barplot module<a class="headerlink" href="#buscoplotpy-graphics-organism-busco-barplot-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.organism_busco_barplot">
+<span id="buscoplotpy-graphics-organism-busco-barplot-module"></span><h2>buscoplotpy.graphics.organism_busco_barplot module<a class="headerlink" href="#module-buscoplotpy.graphics.organism_busco_barplot" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.organism_busco_barplot.organism_busco_barplot">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.organism_busco_barplot.</span></span><span class="sig-name descname"><span class="pre">organism_busco_barplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organism_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'busco_barplot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plt_show</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.organism_busco_barplot.organism_busco_barplot" title="Link to this definition"></a></dt>
+<dd><p>Generate a barplot to visualize the completeness of assembly for different organisms on the same BUSCO dataset.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>df (pd.DataFrame): The input dataframe containing the data to be plotted.</p></li>
+<li><p>group_name (str): The name of the group to be plotted.</p></li>
+<li><p>organism_name (str): The name of the organism to be plotted.</p></li>
+<li><p>out_path (str): The path where the plot image will be saved.</p></li>
+<li><p>filename (str): The name of the plot image file.</p></li>
+</ul>
+</dd>
+<dt>Output:</dt><dd><ul class="simple">
+<li><p>A barplot image with the completeness of assembly for different organisms on the same BUSCO dataset in .png format.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="buscoplotpy-graphics-synteny-module">
-<h2>buscoplotpy.graphics.synteny module<a class="headerlink" href="#buscoplotpy-graphics-synteny-module" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics.synteny">
+<span id="buscoplotpy-graphics-synteny-module"></span><h2>buscoplotpy.graphics.synteny module<a class="headerlink" href="#module-buscoplotpy.graphics.synteny" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.generate_bottom_karyotype">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">generate_bottom_karyotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">karyotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.generate_bottom_karyotype" title="Link to this definition"></a></dt>
+<dd><p>Generate a bottom karyotype plot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>karyotype (pd.DataFrame): DataFrame containing karyotype information.
+dim (int): Dimension of the karyotype plot.
+round_edges (bool): Whether to round the edges of the chromosomes.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Dictionary containing the generated chromosomes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.generate_left_karyotype">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">generate_left_karyotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">karyotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.generate_left_karyotype" title="Link to this definition"></a></dt>
+<dd><p>Plot the left karyotype chromosomes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>karyotype: pandas DataFrame containing information about the chromosomes</p></li>
+<li><p>dim: dimension of the chromosomes</p></li>
+<li><p>round_edges: flag indicating whether to round the edges of the chromosomes</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>C: A dictionary mapping chromosome names to their corresponding Chromosome objects.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.generate_links">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">generate_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ft_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ft_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_chromosomes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_chromosomes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.generate_links" title="Link to this definition"></a></dt>
+<dd><p>Generates and plots links between two data frames.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>ft_1 (pd.DataFrame): First full table data frame.
+ft_2 (pd.DataFrame): Second full table data frame.
+right_chromosomes (dict): Dictionary mapping sequence names to right chromosomes.
+left_chromosomes (dict): Dictionary mapping sequence names to left chromosomes.
+link_colors (str): Dictionary mapping sequence names to link colors.
+straight_line (bool): Flag indicating whether to plot links as straight lines.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.generate_right_karyotype">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">generate_right_karyotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">karyotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.generate_right_karyotype" title="Link to this definition"></a></dt>
+<dd><p>Plot the left karyotype chromosomes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>karyotype: pandas DataFrame containing information about the chromosomes</p></li>
+<li><p>dim: dimension of the chromosomes</p></li>
+<li><p>round_edges: flag indicating whether to round the edges of the chromosomes</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>C: A dictionary mapping chromosome names to their corresponding Chromosome objects.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.generate_up_karyotype">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">generate_up_karyotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">karyotype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.generate_up_karyotype" title="Link to this definition"></a></dt>
+<dd><p>Generate an upward karyotype plot based on the given karyotype data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>karyotype (pd.DataFrame): DataFrame containing karyotype information.
+dim (int): Dimension of the karyotype plot.
+round_edges (bool): Flag indicating whether to use rounded edges for the chromosomes.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Dictionary containing the generated karyotype plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.horizontal_synteny_plot">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">horizontal_synteny_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ft_1:</span> <span class="pre">~pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ft_2:</span> <span class="pre">~pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">karyotype_1:</span> <span class="pre">~pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">karyotype_2:</span> <span class="pre">~pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'Synteny</span> <span class="pre">plot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize:</span> <span class="pre">(&lt;class</span> <span class="pre">'int'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'int'&gt;)</span> <span class="pre">=</span> <span class="pre">(30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_colors:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_line:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_inches:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'tight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plt_show:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.synteny.horizontal_synteny_plot" title="Link to this definition"></a></dt>
+<dd><p>Generate a horizontal synteny plot.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>ft_1 (pd.DataFrame): Full table for the left karyotype.
+ft_2 (pd.DataFrame): Full table for the right karyotype.
+karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
+karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
+title (str, optional): The title of the plot. Defaults to ‘Synteny plot’.
+dim (int, optional): The dimension of the chromosomes. Defaults to 2.
+figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
+dpi (int, optional): The resolution of the plot figure. Defaults to 300.
+round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
+link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
+straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
+output_path (str, optional): The path to save the output plot. Defaults to None.
+plt_show (bool, optional): Whether to show the plot. Defaults to False.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.plot_chromosomes">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">plot_chromosomes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosomes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.plot_chromosomes" title="Link to this definition"></a></dt>
+<dd><p>Plots the chromosomes on the given axes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>chromosomes (dict): Dictionary mapping sequence names to Chromosome objects.
+ax (plt.Axes): Matplotlib axes object to plot the chromosomes on.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.plot_links">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">plot_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">links</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#buscoplotpy.graphics.synteny.plot_links" title="Link to this definition"></a></dt>
+<dd><p>Plots the links on the given axes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>links (list): List of Link objects.
+ax (plt.Axes): Matplotlib axes object to plot the links on.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="buscoplotpy.graphics.synteny.vertical_synteny_plot">
+<span class="sig-prename descclassname"><span class="pre">buscoplotpy.graphics.synteny.</span></span><span class="sig-name descname"><span class="pre">vertical_synteny_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ft_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ft_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">karyotype_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">karyotype_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Synteny</span> <span class="pre">plot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(18,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_inches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'tight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plt_show</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.synteny.vertical_synteny_plot" title="Link to this definition"></a></dt>
+<dd><p>Generate a vertical synteny plot.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>ft_1 (pd.DataFrame): Full table for the left karyotype.
+ft_2 (pd.DataFrame): Full table for the right karyotype.
+karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
+karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
+title (str, optional): The title of the plot. Defaults to ‘Synteny plot’.
+dim (int, optional): The dimension of the chromosomes. Defaults to 2.
+figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
+dpi (int, optional): The resolution of the plot figure. Defaults to 300.
+round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
+link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
+straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
+output_path (str, optional): The path to save the plot to. Defaults to None.
+plt_show (bool, optional): Whether to show the plot. Defaults to False.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-buscoplotpy.graphics">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-buscoplotpy.graphics" title="Link to this heading"></a></h2>
 </section>
 </section>
 
