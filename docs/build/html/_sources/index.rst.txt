@@ -37,7 +37,7 @@ BUSCO-Plot-Py has been licensed under [...]
 
    introduction
    installation
-   buscoplotpy
+   modules
 
 
 Indices and tables

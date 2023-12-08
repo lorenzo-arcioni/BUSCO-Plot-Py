@@ -30,6 +30,7 @@ class Label:
 
         """
         Plot the text on the given axes.
+        
         Parameters:
             ax (matplotlib.axes.Axes): The axes on which to plot the text.
         """

@@ -143,6 +143,7 @@ class Chromosome:
 
         """
         Add a label to the plot at the specified coordinates.
+        
         Args:
             x (float): The x-coordinate of the label.
             y (float): The y-coordinate of the label.

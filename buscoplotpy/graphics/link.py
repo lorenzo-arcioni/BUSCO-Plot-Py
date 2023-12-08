@@ -52,6 +52,7 @@ class Link:
 
         """
         Plot the link on the given axes.
+        
         Args:
             ax (matplotlib.axes.Axes): The axes on which to plot the link.
         """

@@ -48,23 +48,16 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="buscoplotpy.html">buscoplotpy package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="buscoplotpy.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">buscoplotpy.graphics package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.chromosome">buscoplotpy.graphics.chromosome module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.karyoplot">buscoplotpy.graphics.karyoplot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.label">buscoplotpy.graphics.label module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.link">buscoplotpy.graphics.link module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.organism_busco_barplot">buscoplotpy.graphics.organism_busco_barplot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics.synteny">buscoplotpy.graphics.synteny module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-buscoplotpy.graphics">Module contents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">buscoplotpy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="buscoplotpy.html">buscoplotpy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="buscoplotpy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">buscoplotpy.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="buscoplotpy.utils.html">buscoplotpy.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="buscoplotpy.utils.html">buscoplotpy.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buscoplotpy.html#module-buscoplotpy">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="buscoplotpy.html#module-buscoplotpy">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -83,6 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">buscoplotpy</a></li>
           <li class="breadcrumb-item"><a href="buscoplotpy.html">buscoplotpy package</a></li>
       <li class="breadcrumb-item active">buscoplotpy.graphics package</li>
       <li class="wy-breadcrumbs-aside">
@@ -108,15 +102,15 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="buscoplotpy.graphics.chromosome.Chromosome.add_label">
 <span class="sig-name descname"><span class="pre">add_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">va</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'baseline'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.chromosome.Chromosome.add_label" title="Link to this definition"></a></dt>
-<dd><p>Add a label to the plot at the specified coordinates.
-Args:</p>
-<blockquote>
-<div><p>x (float): The x-coordinate of the label.
+<dd><p>Add a label to the plot at the specified coordinates.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>x (float): The x-coordinate of the label.
 y (float): The y-coordinate of the label.
 text (str): The text of the label.
 ha (str, optional): The horizontal alignment of the label. Defaults to ‘left’.
 va (str, optional): The vertical alignment of the label. Defaults to ‘baseline’.</p>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -197,11 +191,11 @@ plt_show (bool, optional): Whether to show the plot. Default is False.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="buscoplotpy.graphics.label.Label.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.label.Label.plot" title="Link to this definition"></a></dt>
-<dd><p>Plot the text on the given axes.
-Parameters:</p>
-<blockquote>
-<div><p>ax (matplotlib.axes.Axes): The axes on which to plot the text.</p>
-</div></blockquote>
+<dd><p>Plot the text on the given axes.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>ax (matplotlib.axes.Axes): The axes on which to plot the text.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -232,11 +226,11 @@ p3 (float): The ending point of the curve.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="buscoplotpy.graphics.link.Link.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buscoplotpy.graphics.link.Link.plot" title="Link to this definition"></a></dt>
-<dd><p>Plot the link on the given axes.
-Args:</p>
-<blockquote>
-<div><p>ax (matplotlib.axes.Axes): The axes on which to plot the link.</p>
-</div></blockquote>
+<dd><p>Plot the link on the given axes.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The axes on which to plot the link.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
