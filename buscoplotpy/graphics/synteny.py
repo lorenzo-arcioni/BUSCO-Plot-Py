@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
 # Import the chromosome and link classes
-from buscoplotpy.graphics.chromosome import Chromosome
-from buscoplotpy.graphics.link import Link
+from chromosome import Chromosome
+from link import Link
 
 # Set the constants
 CHR_DISTANCE = 2

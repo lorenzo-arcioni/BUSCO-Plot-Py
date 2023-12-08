@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # This class represents a link between two chromosomes.
 
-import buscoplotpy.graphics.chromosome as Chromosome
+import chromosome as Chromosome
 import numpy as np
 
 class Link:

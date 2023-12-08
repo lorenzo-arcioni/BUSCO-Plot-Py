@@ -4,7 +4,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from buscoplotpy.graphics.chromosome import Chromosome
+from chromosome import Chromosome
 from matplotlib.patches import Rectangle
 
 # Define the colors
