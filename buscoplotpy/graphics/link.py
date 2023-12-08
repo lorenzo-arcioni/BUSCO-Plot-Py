@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # This class represents a link between two chromosomes.
 
-import chromosome as Chromosome
+from ..graphics.chromosome import Chromosome
 import numpy as np
 
 class Link:

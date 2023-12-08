@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
 # Import the chromosome and link classes
-from chromosome import Chromosome
-from link import Link
+from ..graphics.chromosome import Chromosome
+from ..graphics.link import Link
 
 # Set the constants
 CHR_DISTANCE = 2

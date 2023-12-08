@@ -2,7 +2,7 @@
 # This calss represents a Chromosome object
 
 from matplotlib.patches import Wedge, Rectangle
-from label import Label
+from ..graphics.label import Label
 
 
 class Chromosome:
