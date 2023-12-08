@@ -1,5 +1,1 @@
 sphinx-rtd-theme
-matplotlib
-seaborn
-pandas
-

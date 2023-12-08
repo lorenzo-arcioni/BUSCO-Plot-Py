@@ -27,7 +27,7 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 rst_epilog = """
-.. |ProjectVersion| replace:: 1.0.0
+.. |ProjectVersion| replace:: 0.0.2
 """
 
 # -- Options for HTML output -------------------------------------------------
