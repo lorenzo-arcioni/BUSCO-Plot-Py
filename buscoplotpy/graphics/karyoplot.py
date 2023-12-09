@@ -30,19 +30,19 @@ def karyoplot(karyotype: pd.DataFrame,
     Plot a karyotype based on the karyotype file and the BUSCO fulltable.
 
     Parameters:
-        karyotype (pd.DataFrame): The karyotype DataFrame.
-        output_file (str, optional): The path to save the output plot.
-        title (str, optional): The title of the plot.
-        fulltable (pd.DataFrame): The BUSCO's full table DataFrame.
-        dpi (int, optional): The DPI (dots per inch) of the output plot. Default is 300.
-        chrs_limit (int, optional): The maximum number of chromosomes to plot. Default is 30.
-        plt_show (bool, optional): Whether to show the plot. Default is False.
+        - karyotype (pd.DataFrame): The karyotype DataFrame.
+        - output_file (str, optional): The path to save the output plot.
+        - title (str, optional): The title of the plot.
+        - fulltable (pd.DataFrame): The BUSCO's full table DataFrame.
+        - dpi (int, optional): The DPI (dots per inch) of the output plot. Default is 300.
+        - chrs_limit (int, optional): The maximum number of chromosomes to plot. Default is 30.
+        - plt_show (bool, optional): Whether to show the plot. Default is False.
 
     Output:
         - The karyotype plot in png format.
 
     Returns:
-        None
+        - None
     """
     
     # Selecting the right palette

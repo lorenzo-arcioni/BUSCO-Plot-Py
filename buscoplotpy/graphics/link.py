@@ -12,13 +12,13 @@ class Link:
         Initialize the Line class.
 
         Parameters:
-            C1 (Chromosome): The first chromosome object.
-            C2 (Chromosome): The second chromosome object.
-            p_1 (int): The position on the first chromosome.
-            p_2 (int): The position on the second chromosome.
-            color (str, optional): The color of the line. Defaults to '#d1d1d1'.
-            straight_line (bool, optional): Whether the line should be straight. Defaults to False.
-            horizontal (bool, optional): Whether the line should be horizontal. Defaults to False.
+            - C1 (Chromosome): The first chromosome object.
+            - C2 (Chromosome): The second chromosome object.
+            - p_1 (int): The position on the first chromosome.
+            - p_2 (int): The position on the second chromosome.
+            - color (str, optional): The color of the line. Defaults to '#d1d1d1'.
+            - straight_line (bool, optional): Whether the line should be straight. Defaults to False.
+            - horizontal (bool, optional): Whether the line should be horizontal. Defaults to False.
         """
 
         # Set Link properties
@@ -36,14 +36,15 @@ class Link:
         """
         Calculate the Bezier curve at time t.
 
-        Args:
-            t (float): The time parameter between 0 and 1.
-            p0 (float): The starting point of the curve.
-            p1 (float): The first control point.
-            p2 (float): The second control point.
-            p3 (float): The ending point of the curve.
+        Parameters:
+            - t (float): The time parameter between 0 and 1.
+            - p0 (float): The starting point of the curve.
+            - p1 (float): The first control point.
+            - p2 (float): The second control point.
+            - p3 (float): The ending point of the curve.
+
         Returns:
-            float: The position on the Bezier curve at time t.
+            - float: The position on the Bezier curve at time t.
         """
 
         return (1 - t)**3 * p0 + 3 * (1 - t)**2 * t * p1 + 3 * (1 - t) * t**2 * p2 + t**3 * p3
@@ -53,8 +54,8 @@ class Link:
         """
         Plot the link on the given axes.
         
-        Args:
-            ax (matplotlib.axes.Axes): The axes on which to plot the link.
+        Parameters:
+            - ax (matplotlib.axes.Axes): The axes on which to plot the link.
         """
         
         # If not straight line then calculate the Bezier curve

@@ -20,13 +20,13 @@ class Chromosome:
         """
         Initialize the Chromosome class.
         
-        Args:
-            x_start (float): The starting x-coordinate of the chromosome.
-            x_end (float): The ending x-coordinate of the chromosome.
-            y_start (float): The starting y-coordinate of the chromosome.
-            y_end (float): The ending y-coordinate of the chromosome.
-            horizontal (bool, optional): Whether the chromosome is horizontal. Defaults to True.
-            round_edges (bool, optional): Whether the chromosome has rounded edges. Defaults to False.
+        Parameters:
+            - x_start (float): The starting x-coordinate of the chromosome.
+            - x_end (float): The ending x-coordinate of the chromosome.
+            - y_start (float): The starting y-coordinate of the chromosome.
+            - y_end (float): The ending y-coordinate of the chromosome.
+            - horizontal (bool, optional): Whether the chromosome is horizontal. Defaults to True.
+            - round_edges (bool, optional): Whether the chromosome has rounded edges. Defaults to False.
         """
 
         # Coordinates
@@ -144,12 +144,12 @@ class Chromosome:
         """
         Add a label to the plot at the specified coordinates.
         
-        Args:
-            x (float): The x-coordinate of the label.
-            y (float): The y-coordinate of the label.
-            text (str): The text of the label.
-            ha (str, optional): The horizontal alignment of the label. Defaults to 'left'.
-            va (str, optional): The vertical alignment of the label. Defaults to 'baseline'.
+        Parameters:
+            - x (float): The x-coordinate of the label.
+            - y (float): The y-coordinate of the label.
+            - text (str): The text of the label.
+            - ha (str, optional): The horizontal alignment of the label. Defaults to 'left'.
+            - va (str, optional): The vertical alignment of the label. Defaults to 'baseline'.
         """
 
         label = Label(x, y, text, rotation=rotation, ha=ha, va=va)
@@ -161,11 +161,11 @@ class Chromosome:
         Adds a region to the list of regions.
         
         Parameters:
-            anchor_point (Tuple[float, float]): The anchor point of the region.
-            width (float): The width of the region.
-            height (float): The height of the region.
-            color (str, optional): The color of the region. Defaults to 'black'.
-            linewidth (int, optional): The linewidth of the region. Defaults to 1.
+            - anchor_point (Tuple[float, float]): The anchor point of the region.
+            - width (float): The width of the region.
+            - height (float): The height of the region.
+            - color (str, optional): The color of the region. Defaults to 'black'.
+            - linewidth (int, optional): The linewidth of the region. Defaults to 1.
         """
 
         region = Rectangle(xy=anchor_point, width=width, height=height, color=color, linewidth=linewidth)
@@ -177,10 +177,10 @@ class Chromosome:
         Returns the position relative to the start and end of the chromosome.
 
         Parameters:
-            position (int): The position to convert.
+            - position (int): The position to convert.
         
         Returns:
-            float: The position relative to the start and end of the chromosome.
+            - float: The position relative to the start and end of the chromosome.
         """
 
         if self.horizontal:

@@ -149,13 +149,13 @@ def generate_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bo
     """
     Generate a bottom karyotype plot.
 
-    Args:
-        karyotype (pd.DataFrame): DataFrame containing karyotype information.
-        dim (int): Dimension of the karyotype plot.
-        round_edges (bool): Whether to round the edges of the chromosomes.
+    Parameters:
+        - karyotype (pd.DataFrame): DataFrame containing karyotype information.
+        - dim (int): Dimension of the karyotype plot.
+        - round_edges (bool): Whether to round the edges of the chromosomes.
 
     Returns:
-        dict: Dictionary containing the generated chromosomes.
+        - dict: Dictionary containing the generated chromosomes.
     """
 
     # Initialize the step
@@ -214,13 +214,13 @@ def generate_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) 
     """
     Generate an upward karyotype plot based on the given karyotype data.
 
-    Args:
-        karyotype (pd.DataFrame): DataFrame containing karyotype information.
-        dim (int): Dimension of the karyotype plot.
-        round_edges (bool): Flag indicating whether to use rounded edges for the chromosomes.
+    Parameters:
+        - karyotype (pd.DataFrame): DataFrame containing karyotype information.
+        - dim (int): Dimension of the karyotype plot.
+        - round_edges (bool): Flag indicating whether to use rounded edges for the chromosomes.
 
     Returns:
-        dict: Dictionary containing the generated karyotype plot.
+        - dict: Dictionary containing the generated karyotype plot.
     """
 
     # Initialize the step
@@ -285,15 +285,15 @@ def generate_links(ft_1: pd.DataFrame,
     Generates and plots links between two data frames.
     
     Parameters:
-        ft_1 (pd.DataFrame): First full table data frame.
-        ft_2 (pd.DataFrame): Second full table data frame.
-        right_chromosomes (dict): Dictionary mapping sequence names to right chromosomes.
-        left_chromosomes (dict): Dictionary mapping sequence names to left chromosomes.
-        link_colors (str): Dictionary mapping sequence names to link colors.
-        straight_line (bool): Flag indicating whether to plot links as straight lines.
+        - ft_1 (pd.DataFrame): First full table data frame.
+        - ft_2 (pd.DataFrame): Second full table data frame.
+        - right_chromosomes (dict): Dictionary mapping sequence names to right chromosomes.
+        - left_chromosomes (dict): Dictionary mapping sequence names to left chromosomes.
+        - link_colors (str): Dictionary mapping sequence names to link colors.
+        - straight_line (bool): Flag indicating whether to plot links as straight lines.
 
     Returns:
-        None
+        - None
     """
     
     # Filter ft_1 and ft_2 to keep only complete rows
@@ -341,11 +341,11 @@ def plot_chromosomes(chromosomes: dict, ax: plt.Axes) -> None:
     Plots the chromosomes on the given axes.
     
     Parameters:
-        chromosomes (dict): Dictionary mapping sequence names to Chromosome objects.
-        ax (plt.Axes): Matplotlib axes object to plot the chromosomes on.
+        - chromosomes (dict): Dictionary mapping sequence names to Chromosome objects.
+        - ax (plt.Axes): Matplotlib axes object to plot the chromosomes on.
 
     Returns:
-        None
+        - None
     """
 
     for c in chromosomes.values():
@@ -356,11 +356,11 @@ def plot_links(links: list, ax: plt.Axes) -> None:
     Plots the links on the given axes.
     
     Parameters:
-        links (list): List of Link objects.
-        ax (plt.Axes): Matplotlib axes object to plot the links on.
+        - links (list): List of Link objects.
+        - ax (plt.Axes): Matplotlib axes object to plot the links on.
 
     Returns:
-        None
+        - None
     """
 
     for l in links:
@@ -385,22 +385,22 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
     Generate a vertical synteny plot.
     
     Parameters:
-        ft_1 (pd.DataFrame): Full table for the left karyotype.
-        ft_2 (pd.DataFrame): Full table for the right karyotype.
-        karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
-        karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
-        title (str, optional): The title of the plot. Defaults to 'Synteny plot'.
-        dim (int, optional): The dimension of the chromosomes. Defaults to 2.
-        figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
-        dpi (int, optional): The resolution of the plot figure. Defaults to 300.
-        round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
-        link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
-        straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
-        output_path (str, optional): The path to save the plot to. Defaults to None.
-        plt_show (bool, optional): Whether to show the plot. Defaults to False.
+        - ft_1 (pd.DataFrame): Full table for the left karyotype.
+        - ft_2 (pd.DataFrame): Full table for the right karyotype.
+        - karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
+        - karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
+        - title (str, optional): The title of the plot. Defaults to 'Synteny plot'.
+        - dim (int, optional): The dimension of the chromosomes. Defaults to 2.
+        - figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
+        - dpi (int, optional): The resolution of the plot figure. Defaults to 300.
+        - round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
+        - link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
+        - straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
+        - output_path (str, optional): The path to save the plot to. Defaults to None.
+        - plt_show (bool, optional): Whether to show the plot. Defaults to False.
 
     Returns:
-        None
+        - None
     """
 
     # Global variables
@@ -481,22 +481,22 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
     Generate a horizontal synteny plot.
     
     Parameters:
-        ft_1 (pd.DataFrame): Full table for the left karyotype.
-        ft_2 (pd.DataFrame): Full table for the right karyotype.
-        karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
-        karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
-        title (str, optional): The title of the plot. Defaults to 'Synteny plot'.
-        dim (int, optional): The dimension of the chromosomes. Defaults to 2.
-        figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
-        dpi (int, optional): The resolution of the plot figure. Defaults to 300.
-        round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
-        link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
-        straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
-        output_path (str, optional): The path to save the output plot. Defaults to None.
-        plt_show (bool, optional): Whether to show the plot. Defaults to False.
+        - ft_1 (pd.DataFrame): Full table for the left karyotype.
+        - ft_2 (pd.DataFrame): Full table for the right karyotype.
+        - karyotype_1 (pd.DataFrame): Karyotype dataframe for the left karyotype.
+        - karyotype_2 (pd.DataFrame): Karyotype dataframe for the right karyotype.
+        - title (str, optional): The title of the plot. Defaults to 'Synteny plot'.
+        - dim (int, optional): The dimension of the chromosomes. Defaults to 2.
+        - figsize (tuple, optional): The size of the plot figure. Defaults to (18, 10).
+        - dpi (int, optional): The resolution of the plot figure. Defaults to 300.
+        - round_edges (bool, optional): Whether to round the edges of the karyotype blocks. Defaults to False.
+        - link_colors (dict, optional): A dictionary mapping link colors to chromosome pairs. Defaults to {}.
+        - straight_line (bool, optional): Whether to use straight lines for links. Defaults to False.
+        - output_path (str, optional): The path to save the output plot. Defaults to None.
+        - plt_show (bool, optional): Whether to show the plot. Defaults to False.
 
     Returns:
-        None
+        - None
     """
 
     # Global variables
