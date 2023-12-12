@@ -64,7 +64,8 @@ def generate_left_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool
         step = y_end
 
         # Create a Chromosome object
-        c = Chromosome(x_start=x_start,
+        c = Chromosome(name=row['chr'],
+                       x_start=x_start,
                        x_end=x_end,
                        y_start=y_start,
                        y_end=y_end,
@@ -126,7 +127,8 @@ def generate_right_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: boo
 
         step = y_end
 
-        c = Chromosome(x_start=x_end,# This switch is for visualize the colors correctly
+        c = Chromosome(name=row['chr'],
+                       x_start=x_end,# This switch is for visualize the colors correctly
                        x_end=x_start,    # This switch is for visualize the colors correctly
                        y_start=y_start,
                        y_end=y_end,
@@ -191,7 +193,8 @@ def generate_bottom_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bo
 
         step = x_end
 
-        c = Chromosome(x_start=x_start,
+        c = Chromosome(name=row['chr'],
+                       x_start=x_start,
                        x_end=x_end,
                        y_start=y_start,
                        y_end=y_end,
@@ -256,7 +259,8 @@ def generate_up_karyotype(karyotype: pd.DataFrame, dim: int, round_edges: bool) 
 
         step = x_end
 
-        c = Chromosome(x_start=x_start,
+        c = Chromosome(name=row['chr'],
+                       x_start=x_start,
                        x_end=x_end,
                        y_start=y_end,# This switch is for visualize the colors correctly
                        y_end=y_start,# This switch is for visualize the colors correctly
@@ -336,7 +340,7 @@ def generate_links(ft_1: pd.DataFrame,
     
     return links
 
-def plot_chromosomes(chromosomes: dict, ax: plt.Axes) -> None:
+def plot_chromosomes(chromosomes: dict, fig: plt.Figure, ax: plt.Axes) -> None:
     """
     Plots the chromosomes on the given axes.
     
@@ -349,7 +353,7 @@ def plot_chromosomes(chromosomes: dict, ax: plt.Axes) -> None:
     """
 
     for c in chromosomes.values():
-        c.plot(ax)
+        c.plot(fig, ax)
 
 def plot_links(links: list, ax: plt.Axes) -> None:
     """
@@ -439,8 +443,8 @@ def vertical_synteny_plot(ft_1: pd.DataFrame,
     plot_links(links, ax)
 
     # Plot the chromosomes
-    plot_chromosomes(left_chromosomes, ax)
-    plot_chromosomes(right_chromosomes, ax)
+    plot_chromosomes(left_chromosomes, fig, ax)
+    plot_chromosomes(right_chromosomes, fig, ax)
 
     # Write the legend
     plt.legend(handles=[Rectangle((0,0),1,1, color=karyotype_1['color'][0]), 
@@ -535,8 +539,8 @@ def horizontal_synteny_plot(ft_1: pd.DataFrame,
     plot_links(links, ax)
 
     # Plot the chromosomes
-    plot_chromosomes(bottom_chromosomes, ax)
-    plot_chromosomes(top_chromosomes, ax)
+    plot_chromosomes(bottom_chromosomes, fig, ax)
+    plot_chromosomes(top_chromosomes, fig, ax)
 
     # Write the legend
     plt.legend(handles=[Rectangle((0,0),1,1, color=karyotype_1['color'][0]), 

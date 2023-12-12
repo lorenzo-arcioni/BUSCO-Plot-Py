@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #Importing libraries
 import pandas as pd
 

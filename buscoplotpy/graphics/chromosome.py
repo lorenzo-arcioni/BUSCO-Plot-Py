@@ -1,26 +1,32 @@
 # -*- coding: utf-8 -*-
 # This calss represents a Chromosome object
 
+import pandas as pd
+import numpy as np
+
 from matplotlib.patches import Wedge, Rectangle
 from ..graphics.label import Label
 
 
 class Chromosome:
 
-    def __init__(self, x_start: float, 
+    def __init__(self, name: str,
+                       x_start: float, 
                        x_end: float, 
                        y_start: float, 
                        y_end: float,
                        size: float,
                        horizontal: bool = True,
                        round_edges: bool = False,
-                       color: str = ''
+                       color: str = '',
+                       genes_dataframe: pd.DataFrame = None
     ):
 		
         """
         Initialize the Chromosome class.
         
         Parameters:
+            - name (str): The name of the chromosome.
             - x_start (float): The starting x-coordinate of the chromosome.
             - x_end (float): The ending x-coordinate of the chromosome.
             - y_start (float): The starting y-coordinate of the chromosome.
@@ -28,6 +34,9 @@ class Chromosome:
             - horizontal (bool, optional): Whether the chromosome is horizontal. Defaults to True.
             - round_edges (bool, optional): Whether the chromosome has rounded edges. Defaults to False.
         """
+
+        # Name
+        self.name = name
 
         # Coordinates
         self.x_start = x_start
@@ -44,6 +53,13 @@ class Chromosome:
         # Elements
         self.labels  = []
         self.regions = []
+
+        # Genes positions
+        if genes_dataframe is not None:
+            self.genes_dataframe = genes_dataframe[genes_dataframe['sequence'] == self.name]
+            self.genes_dataframe = self.genes_dataframe[self.genes_dataframe['type'] == 'gene']
+        else:
+            self.genes_dataframe = None
         
         if self.horizontal and self.round_edges:
 
@@ -84,7 +100,7 @@ class Chromosome:
 
         return 'Chromosome({}, {}, {}, {})'.format(self.x_start, self.x_end, self.y_start, self.y_end)
 
-    def plot(self, ax):
+    def plot(self, fig, ax):
 
         """
         Plot the chromosome on the given axes.
@@ -170,6 +186,17 @@ class Chromosome:
 
         region = Rectangle(xy=anchor_point, width=width, height=height, color=color, linewidth=linewidth)
         self.regions.append(region)
+    
+    def add_gene_density(self, genes_dataframe:pd.DataFrame) -> None:
+
+        """
+        Adds gene density to the Chromosome.
+        
+        Parameters:
+            - genes_dataframe (pd.DataFrame): The dataframe containing the gene density information.
+        """
+
+        self.genes_dataframe = genes_dataframe
     
     def get_relative_position(self, position: int) -> (float, float):
 
