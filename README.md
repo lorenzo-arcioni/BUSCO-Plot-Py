@@ -60,7 +60,20 @@ The karyotype plot can help us to visualize position (and the status) of found B
 <p align="center">
 <img src="./images/karyoplot2.png">
 <br>
-<em>Fig2: Tetradesmus obliquus karyoplot with azure color palette.</em>
+<em>Fig2: Bathycoccus prasinos karyoplot with azure color palette.</em>
+</p>
+
+### BUSCO chromoplot
+
+Gene discovery software plays a crucial role in identifying and annotating genes within a genome. One common output format for gene prediction results is the General Feature Format (GFF), which provides a standardized way to represent genomic features such as mRNA, coding sequences (CDS), and exons, along with their coordinates. 
+
+When using BUSCO with the metaeukaryota (METAeuk) or AUGUSTUS model, the GFF output will contain annotations for the predicted genes.
+And here, once again, it is not a given to interpret the results found in the GFF file correctly and easily. The chromoplot function has been implemented precisely with the purpose of simplifying the interpretation and analysis of this type of data. The function is indeed capable of creating a density plot for each sequence in the karyotype file of the organism under examination, thus generating an image that contains all the plots for all sequences in the karyotype file.
+
+<p align="center">
+<img src="./images/chromoplot.png">
+<br>
+<em>Fig3: Bathycoccus prasinos karyoplot with azure color palette.</em>
 </p>
 
 ### BUSCO synteny plot

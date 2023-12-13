@@ -37,7 +37,7 @@ def chromoplot(karyotype: pd.DataFrame,
 
     number_of_graphs = karyotype.shape[0]
 
-    fig, ax = plt.subplots(ncols=1, nrows=number_of_graphs, figsize=(22, number_of_graphs * 2 + 3), dpi=dpi)
+    fig, ax = plt.subplots(ncols=1, nrows=number_of_graphs, figsize=(24, number_of_graphs * 2 + 3), dpi=dpi)
 
     # set the spacing between subplots
     plt.subplots_adjust(#left  = 0.125,  # the left side of the subplots of the figure
@@ -86,7 +86,8 @@ def chromoplot(karyotype: pd.DataFrame,
                 ax[index].fill_between(X, 0, Y, color=BLACK, alpha=0.2)
             elif target == 'exon':
                 ax[index].fill_between(X, 0, Y, color=RED, alpha=0.2)
-            
+        # Add grid
+        ax[index].grid(True)
         ax[index].set_xlabel('Chromosome position', fontsize=14)
         ax[index].set_ylabel('Counts', fontsize=14)
 
