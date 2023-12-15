@@ -4,6 +4,14 @@ buscoplotpy.graphics package
 Submodules
 ----------
 
+buscoplotpy.graphics.chromoplot module
+--------------------------------------
+
+.. automodule:: buscoplotpy.graphics.chromoplot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 buscoplotpy.graphics.chromosome module
 --------------------------------------
 

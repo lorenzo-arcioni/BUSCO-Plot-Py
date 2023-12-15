@@ -20,6 +20,14 @@ buscoplotpy.utils.load\_json\_summary module
    :undoc-members:
    :show-inheritance:
 
+buscoplotpy.utils.load\_metaeuk\_coordinates module
+---------------------------------------------------
+
+.. automodule:: buscoplotpy.utils.load_metaeuk_coordinates
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
